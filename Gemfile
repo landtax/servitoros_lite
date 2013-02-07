@@ -7,6 +7,7 @@ gem 'rails', '3.2.11'
 
 gem 'mysql2'
 gem "unicorn", "~> 4.6.0"
+gem "devise"
 
 
 # Gems used only for assets and not required
