@@ -15,15 +15,15 @@ class Execution < ActiveRecord::Base
   end
 
 
-  def is_running?
+  def running?
     status == Status[:running]
   end
 
-  def is_complete?
+  def complete?
     status == Status[:complete]
   end
 
-  def had_errors?
+  def error?
     status == Status[:error]
   end
 
