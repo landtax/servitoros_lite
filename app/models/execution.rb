@@ -5,7 +5,7 @@ class Execution < ActiveRecord::Base
   def run!
     workflow = File.read(Rails.root.join("config","freeling_tagging_for_crawled_data_610788.t2flow"))
     creds = T2Server::HttpBasic.new('test', 'test11')
-    conn_params = T2Server::ConnectionParameters.new
+    conn_params = T2Server::InsecureSSLConnectionParameters.new
 
     T2Server::Run.create(TAVERNA_SERVER_URI, workflow, creds, conn_params) do |run|
       self.status = Status[:running]
@@ -13,7 +13,6 @@ class Execution < ActiveRecord::Base
       self.save
     end
   end
-
 
   def running?
     status == Status[:running]
