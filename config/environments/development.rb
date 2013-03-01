@@ -43,5 +43,7 @@ SoaplabMajordomo::Application.configure do
 
   #needed for devise confirmable
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  TAVERNA_SERVER_URI = 'https://localhost:8443/taverna-server/'
 end
 
