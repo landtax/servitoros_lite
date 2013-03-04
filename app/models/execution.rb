@@ -1,17 +1,21 @@
 class Execution < ActiveRecord::Base
 
-  Status = {new: 1 , running: 2, complete: 3, error: 100}
+  Status = {new: 1 , initialized: 2, running: 3, finished: 4, error: 100}
 
-  def server
-    @server ||= T2Server.new(server_uri, connection_params)
+
+  def initialized?
+    update_status if status != Status[:initialized]
+    status == Status[:initialized]
   end
 
   def running?
+    update_status if status != Status[:running]
     status == Status[:running]
   end
 
-  def complete?
-    status == Status[:complete]
+  def finished?
+    update_status if status != Status[:finished]
+    status == Status[:finished]
   end
 
   def error?
@@ -23,14 +27,27 @@ class Execution < ActiveRecord::Base
       setup_inputs(run)
       run.start
 
-      self.status = Status[:running]
+      self.status = Status[:initialized]
       self.taverna_id = run.identifier
-      self.save
     end
+    save
   end
 
+  def update_status
+    return unless taverna_id
+    self.status = Status[server_run.status]
+    save
+  end
 
   private 
+
+  def server
+    @server ||= T2Server::Server.new(server_uri, connection_params)
+  end
+
+  def server_run
+    @server_run ||= server.run(taverna_id, credentials)
+  end
 
   def workflow
     File.read(Rails.root.join("config","freeling_tagging_for_crawled_data_610788.t2flow"))
