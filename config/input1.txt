@@ -1,0 +1,2 @@
+http://nlp.ilsp.gr/panacea/D4.3/data/201109/ENV_ES/1.xml
+http://nlp.ilsp.gr/panacea/D4.3/data/201109/ENV_ES/2.xml
