@@ -1,33 +1,14 @@
 class Execution < ActiveRecord::Base
 
-  Status = {new: 1 , initialized: 2, running: 3, finished: 4, error: 100}
+  #acts_as_model_with_status({new: 1 , initialized: 2, running: 3, finished: 4, error: 100}, :default => :new, :column => :status)
 
-
-  def initialized?
-    update_status if status != Status[:initialized]
-    status == Status[:initialized]
-  end
-
-  def running?
-    update_status if status != Status[:running]
-    status == Status[:running]
-  end
-
-  def finished?
-    update_status if status != Status[:finished]
-    status == Status[:finished]
-  end
-
-  def error?
-    status == Status[:error]
-  end
 
   def run!
     T2Server::Run.create(server_uri, workflow, credentials, connection_params) do |run|
       setup_inputs(run)
       run.start
 
-      self.status = Status[:initialized]
+      self.status = :initialized
       self.taverna_id = run.identifier
     end
     save
@@ -35,7 +16,7 @@ class Execution < ActiveRecord::Base
 
   def update_status
     return unless taverna_id
-    self.status = Status[server_run.status]
+    self.status = server_run.status
     save
   end
 

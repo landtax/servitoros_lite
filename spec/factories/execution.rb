@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :execution do
-    status Execution::Status[:new]
+    status :new
   end
 end
