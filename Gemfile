@@ -10,6 +10,7 @@ gem "unicorn", "~> 4.6.0"
 gem "devise"
 gem 'jquery-rails'
 gem 't2-server'
+gem 'acts_as_model_with_status'
 
 # Gems used only for assets and not required
 # in production environments by default.

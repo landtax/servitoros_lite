@@ -1,7 +1,6 @@
 class Execution < ActiveRecord::Base
 
-  #acts_as_model_with_status({new: 1 , initialized: 2, running: 3, finished: 4, error: 100}, :default => :new, :column => :status)
-
+  acts_as_model_with_status({new: 1 , initialized: 2, running: 3, finished: 4, error: 100}, :default => :new, :column => :status)
 
   def run!
     T2Server::Run.create(server_uri, workflow, credentials, connection_params) do |run|
@@ -18,6 +17,14 @@ class Execution < ActiveRecord::Base
     return unless taverna_id
     self.status = server_run.status
     save
+  end
+
+  def running?
+    status == :running
+  end
+
+  def initialized?
+    status == :initialized
   end
 
   private 
