@@ -7,6 +7,8 @@ SoaplabMajordomo::Application.routes.draw do
 
   root :to => 'home#index'
 
+  resources :executions
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
