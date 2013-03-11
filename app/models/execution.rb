@@ -42,7 +42,9 @@ class Execution < ActiveRecord::Base
   end
 
   def credentials
-    creds = T2Server::HttpBasic.new('test', 'test11')
+    username = Rails.configuration.taverna_server.username
+    password = Rails.configuration.taverna_server.password
+    creds = T2Server::HttpBasic.new(username, password)
   end
 
   def connection_params
@@ -52,7 +54,7 @@ class Execution < ActiveRecord::Base
   end
 
   def server_uri
-    T2Server::Util.strip_uri_credentials(TAVERNA_SERVER_URI).first
+    T2Server::Util.strip_uri_credentials(Rails.configuration.taverna_server.uri).first
   end
 
   def setup_inputs run

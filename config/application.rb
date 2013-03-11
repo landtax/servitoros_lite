@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'ostruct'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -63,5 +64,8 @@ module SoaplabMajordomo
     config.generators do |g|
       g.fixture_replacement :factory_girl
     end
+
+    config.taverna_server = OpenStruct.new(YAML.load_file(Rails.root.join("config/taverna_server.yml").to_s)[Rails.env])
+
   end
 end

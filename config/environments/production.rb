@@ -65,5 +65,4 @@ SoaplabMajordomo::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
  
-  TAVERNA_SERVER_URI = 'https://iula02v.upf.edu:8443/taverna-server/'
 end
