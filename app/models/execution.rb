@@ -2,6 +2,8 @@ class Execution < ActiveRecord::Base
 
   acts_as_model_with_status({new: 1 , initialized: 2, running: 3, finished: 4, error: 100}, :default => :new, :column => :status)
 
+  belongs_to :user
+
   def run!
     T2Server::Run.create(server_uri, workflow, credentials, connection_params) do |run|
       setup_inputs(run)
