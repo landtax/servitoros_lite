@@ -1,0 +1,15 @@
+development:
+  uri: 'https://localhost:8443/taverna-server/'
+  username:
+  password:
+
+test:
+  uri: 'https://localhost:8443/taverna-server/'
+  username:
+  password:
+
+production:
+  uri: 'https://localhost:8443/taverna-server/'
+  username:
+  password:
+
