@@ -124,6 +124,9 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
+    simple_form (2.1.0)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     slop (3.4.3)
     sprockets (2.2.2)
       hike (~> 1.2)
@@ -173,6 +176,7 @@ DEPENDENCIES
   pry
   rails (= 3.2.12)
   rspec-rails
+  simple_form
   t2-server
   therubyracer
   twitter-bootstrap-rails
