@@ -1,0 +1,8 @@
+<h1>Executions#show</h1>
+<p>Find me in app/views/executions/show.html.erb</p>
+
+<%= simple_form_for @execution, :html => {:class => 'form-horizontal'} do |f| %>
+  <%= f.input :user_id, :as => :hidden %>
+  <%= f.input :input_parameters %>
+  <%= f.button :submit %>
+<% end %>

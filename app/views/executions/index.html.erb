@@ -1,0 +1,6 @@
+<h1>Executions#index</h1>
+<p>Find me in app/views/executions/index.html.erb</p>
+<% @executions.each do |execution| %>
+  <%= execution.created_at %>
+  <%= execution.status.to_s %>
+<% end %>
