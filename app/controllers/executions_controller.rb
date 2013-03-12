@@ -9,7 +9,8 @@ class ExecutionsController < ApplicationController
   end
 
   def create
-    @execution = Execution.create(:user => current_user)
+    @execution = Execution.create(post_params)
+    redirect_to execution_path(@execution)
   end
 
   def new
@@ -17,4 +18,14 @@ class ExecutionsController < ApplicationController
     @execution.user = current_user
     render :show
   end
+
+
+  private
+
+  def post_params
+    attributes = params[:execution].slice(:input_parameters)
+    attributes[:user_id] = current_user.id
+    attributes
+  end
+
 end
