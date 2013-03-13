@@ -1,43 +1,58 @@
 require 'spec_helper'
 
 describe ExecutionsController do
-  render_views
+  include_context "controller_spec"
+  include_context "with_current_user"
+  include_context "with_ability"
 
-  before do
-     controller.stub!(:current_user).and_return(user)
+  let(:current_user) { create(:user) }
+  let(:show_params) {{:id => current_user.executions.first.id }}
+  let(:create_params) {{:execution => {:input_parameters => "input1"}}}
+
+  context "with permissions" do
+
+    describe "#index" do
+      before { get_index }
+
+      it { expect(assigns(:executions)) }
+      it { expect(response).to be_success }
+    end
+
+    describe "#new" do
+      before { get :new }
+
+      it { expect(assigns(:execution)) }
+      it { expect(response).to render_template('show') }
+      it { expect(response).to be_success }
+    end
+
+    describe "#show" do
+      before { get_show }
+
+      it { expect(assigns(:execution)) }
+      it { expect(response).to be_success }
+    end
+
+    describe "#create" do
+      before { post_create }
+
+      it { expect(assigns(:execution)) }
+      it { expect(response).to redirect_to(execution_path(assigns(:execution))) }
+    end
   end
 
-  let(:user) { create(:user) }
 
-  describe "#index" do
-    before { get :index }
+  context "without persmissions" do
 
-    it { expect(assigns(:executions)) }
-    it { expect(response).to be_success }
-  end
+    describe "#show" do
+      before { ability.cannot :read, Execution }
+      it_behaves_like "show_access_forbidden"
+    end
 
-  describe "#new" do
-    before { get :new }
-
-    it { expect(assigns(:execution)) }
-    it { expect(response).to render_template('show') }
-    it { expect(response).to be_success }
-  end
-
-  describe "#show" do
-    before { get :show, :id => user.executions.first.id }
-
-    it { expect(assigns(:execution)) }
-    it { expect(response).to be_success }
-  end
-
-  describe "#create" do
-    let(:params) {{:input_parameters => "input1"}}
-
-    before { post :create, :execution => params }
-
-    it { expect(assigns(:execution)) }
-    it { expect(response).to redirect_to(execution_path(assigns(:execution))) }
+    describe "#create" do
+      before { ability.cannot :create, Execution }
+      it_behaves_like "create_access_forbidden"
+    end
   end
 
 end

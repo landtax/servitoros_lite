@@ -1,11 +1,11 @@
 class ExecutionsController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @executions = current_user.executions
   end
 
   def show
-    @execution = Execution.find(params[:id])
   end
 
   def create
@@ -14,8 +14,6 @@ class ExecutionsController < ApplicationController
   end
 
   def new
-    @execution = Execution.new
-    @execution.user = current_user
     render :show
   end
 
