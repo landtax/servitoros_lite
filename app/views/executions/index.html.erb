@@ -1,6 +1,45 @@
-<h1>Executions#index</h1>
-<p>Find me in app/views/executions/index.html.erb</p>
-<% @executions.each do |execution| %>
-  <%= execution.created_at %>
-  <%= execution.status.to_s %>
-<% end %>
+<h1>Executions</h1>
+
+<div class="row">
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    <% @executions.each do |execution| %>
+      <tr class="<%= execution_status_class(execution) %>">
+        <td><%= execution.id %> </td>
+        <td> <%= l execution.created_at, :format => :list_datetime %></td>
+        <td> <%= link_to "Lorem ipsum dolor sit amet", execution_path(execution) %></td>
+        <td><%= execution.status.to_s.humanize %></td>
+      </tr>
+    <% end %>
+
+    </tbody>
+    <th>
+    </th>
+  </table>
+
+</div>
+
+<div class="row">
+  <div class="pagination pagination-centered">
+    <ul>
+      <li class="disabled"><a href="#">&laquo;</a></li>
+      <li class="active"><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">6</a></li>
+      <li><a href="#">7</a></li>
+      <li><a href="#">&raquo;</a></li>
+    </ul>
+  </div>
+</div>
