@@ -1,4 +1,4 @@
-shared_context "controller" do
+shared_context "controller_spec" do
   render_views
   let(:get_index) { get :index }
   let(:get_show) { get :show, show_params }
@@ -16,7 +16,7 @@ shared_context "with_ability" do
     ability.can :manage, :all
   end
 
-  let(:ability) {mock_ability}
+  let(:ability) { Object.new.extend(CanCan::Ability) }
 end
 
 shared_examples "create_access_forbidden" do
