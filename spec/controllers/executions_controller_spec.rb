@@ -1,9 +1,7 @@
 require 'spec_helper'
-require 'support/controller_contexts.rb'
 
 describe ExecutionsController do
-
-  include_context "controller"
+  include_context "controller_spec"
   include_context "with_current_user"
   include_context "with_ability"
 
