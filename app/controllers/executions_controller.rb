@@ -14,8 +14,6 @@ class ExecutionsController < ApplicationController
   end
 
   def new
-    @execution = Execution.new
-    @execution.user = current_user
     render :show
   end
 
