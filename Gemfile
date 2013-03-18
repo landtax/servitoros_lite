@@ -9,7 +9,7 @@ gem 'mysql2'
 gem "unicorn", "~> 4.6.0"
 gem "devise"
 gem 'jquery-rails'
-gem 't2-server'
+gem 't2-server', :git => 'https://github.com/landtax/t2-server-gem.git'
 gem 'acts_as_model_with_status'
 gem 'simple_form'
 gem 'cancan'
@@ -25,9 +25,18 @@ group :assets do
   gem 'less-rails'
 end
 
-group :development, :test do
+group :development do
+
+end
+
+group :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'capybara'
+
+end
+
+group :development, :test do
   gem 'pry'
 end
 
