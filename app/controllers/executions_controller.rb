@@ -2,7 +2,7 @@ class ExecutionsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @executions = current_user.executions
+    @executions = current_user.executions.page params[:page]
   end
 
   def show
