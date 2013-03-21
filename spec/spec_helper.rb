@@ -33,6 +33,7 @@ RSpec.configure do |config|
 
   # Devise helpers for testing controllers
   config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::TestHelpers, :type => :view
 
   # Optional syntax methods for FactoryGirl
   config.include FactoryGirl::Syntax::Methods

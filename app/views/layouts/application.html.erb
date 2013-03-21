@@ -24,17 +24,18 @@
       <a class="brand" href="#">SOAPLAB Majordomo</a>
       <div class="nav-collapse">
         <ul class="nav">
-          <li><%= link_to "New job"  %></li>
-          <li><%= link_to "Job list" %></li>
+          <li><%= link_to "New job", "#"  %></li>
+          <li><%= link_to "Job list", "#" %></li>
         </ul>
         <div class="pull-right">
           <% if user_signed_in? %>
             <div id="login_info">
-              <%= link_to(current_user.email, edit_user_registration_path) %>
-              | <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+              <%= link_to(current_user.email, edit_user_registration_path, :id => "btn_user_settings") %>
+              | <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :id => "btn_signout" %>
             </div>
           <% else %>
-              <%= link_to("Sign in", new_user_session_path, :class => "btn btn-primary") %>
+            <%= link_to("Sign in", new_user_session_path, :class => "btn btn-primary", :id => "btn_signin") %>
+            <%= link_to("or Sign up!", new_user_registration_path, :class => "btn btn-primary", :id => "btn_signup") %>
           <% end %>
         </div>
       </div>
