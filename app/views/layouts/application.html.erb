@@ -24,8 +24,10 @@
       <a class="brand" href="#">SOAPLAB Majordomo</a>
       <div class="nav-collapse">
         <ul class="nav">
-          <li><%= link_to "New job", "#"  %></li>
-          <li><%= link_to "Job list", "#" %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to "New job", new_execution_path  %></li>
+            <li><%= link_to "My Jobs", executions_path %></li>
+          <% end %>
         </ul>
         <div class="pull-right">
           <% if user_signed_in? %>
