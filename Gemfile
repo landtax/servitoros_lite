@@ -13,6 +13,7 @@ gem 't2-server', :git => 'https://github.com/landtax/t2-server-gem.git'
 gem 'acts_as_model_with_status'
 gem 'simple_form'
 gem 'cancan'
+gem 'kaminari'
 
 # Gems used only for assets and not required
 # in production environments by default.
