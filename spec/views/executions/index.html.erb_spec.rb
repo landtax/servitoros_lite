@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "executions/index.html.erb" do
 
   let(:user) { create(:user) }
-  let(:executions) { user.executions } 
+  let(:executions) { user.executions.page(1) } 
 
   it "list executions" do
     assign(:executions, executions)
