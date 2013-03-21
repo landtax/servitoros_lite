@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/landtax/t2-server-gem.git
-  revision: b01906569f44c31ea642bd4d5c7998efd824b332
+  revision: 3b3f7b209062ba45173f8fd5a411748a01448bf0
   specs:
     t2-server (1.0.0)
       hirb (>= 0.4.0)
