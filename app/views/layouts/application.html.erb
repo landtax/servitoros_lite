@@ -13,10 +13,6 @@
 </head>
 <body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
@@ -30,15 +26,25 @@
         <ul class="nav">
           <li><%= link_to "New job"  %></li>
           <li><%= link_to "Job list" %></li>
-          <li><%= link_to "Preferences" %></li>
         </ul>
+        <div class="pull-right">
+          <% if user_signed_in? %>
+            <div id="login_info">
+              <%= link_to(current_user.email, edit_user_registration_path) %>
+              | <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+            </div>
+          <% else %>
+              <%= link_to("Sign in", new_user_session_path, :class => "btn btn-primary") %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 
-<div class="container">
+<div id="page" class="container">
+  <%= render partial: "layouts/flash_messages", flash: flash %>
   <div class="row">
     <div class="span9">
       <%= yield %>
@@ -49,8 +55,6 @@
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </div>
 
-  
-  
   </div>
 </div>
 
