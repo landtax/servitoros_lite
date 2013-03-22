@@ -4,6 +4,11 @@ describe Execution do
 
   subject { FactoryGirl.build(:execution) }
 
+  it "should require name" do
+    subject.name = ""
+    expect(subject).to_not be_valid
+  end
+
   it { expect(subject.running?).to be_false }
 
   it "runs" do
