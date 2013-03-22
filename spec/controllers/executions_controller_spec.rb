@@ -7,7 +7,7 @@ describe ExecutionsController do
 
   let(:current_user) { create(:user) }
   let(:show_params) {{:id => current_user.executions.first.id }}
-  let(:create_params) {{:execution => {:input_parameters => "input1"}}}
+  let(:create_params) {{:execution => {:name => "New execution"}}}
 
   context "with permissions" do
 
@@ -35,9 +35,14 @@ describe ExecutionsController do
 
     describe "#create" do
       before { post_create }
-
       it { expect(assigns(:execution)) }
-      it { expect(response).to redirect_to(execution_path(assigns(:execution))) }
+      it { expect(response).to redirect_to(executions_path) }
+
+      context "with invalid data" do
+        let(:create_params) {{:execution => {:name => "" }}}
+        it { expect(response).to render_template('show') }
+      end
+
     end
   end
 

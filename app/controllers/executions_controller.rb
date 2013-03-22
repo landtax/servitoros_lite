@@ -9,11 +9,17 @@ class ExecutionsController < ApplicationController
   end
 
   def create
-    @execution = Execution.create(post_params)
-    redirect_to execution_path(@execution)
+    @execution = Execution.new(post_params)
+    if @execution.save
+      redirect_to :action => :index
+    else
+      render :action => :show
+    end
   end
 
   def new
+    new_count = current_user.executions.count
+    @execution = Execution.new(name: "New job #{new_count}")
     render :show
   end
 
@@ -21,7 +27,7 @@ class ExecutionsController < ApplicationController
   private
 
   def post_params
-    attributes = params[:execution].slice(:input_parameters)
+    attributes = params[:execution].slice(:name, :description)
     attributes[:user_id] = current_user.id
     attributes
   end

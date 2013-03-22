@@ -16,7 +16,7 @@
       <tr class="<%= execution_status_class(execution) %>">
         <td><%= execution.id %> </td>
         <td> <%= l execution.created_at, :format => :list_datetime %></td>
-        <td> <%= link_to "Lorem ipsum dolor sit amet", execution_path(execution) %></td>
+        <td> <%= link_to (execution.name), execution_path(execution) %></td>
         <td><%= execution.status.to_s.humanize %></td>
       </tr>
     <% end %>
