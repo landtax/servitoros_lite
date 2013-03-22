@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/landtax/bootstrap-kaminari-views
+  revision: 262756f63fd89aa74f70c9c4120335c07812c8cf
+  specs:
+    bootstrap-kaminari-views (0.1.0)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
+
+GIT
   remote: https://github.com/landtax/t2-server-gem.git
   revision: 3b3f7b209062ba45173f8fd5a411748a01448bf0
   specs:
@@ -204,6 +212,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_model_with_status
+  bootstrap-kaminari-views!
   cancan
   capybara
   coffee-rails (~> 3.2.1)
