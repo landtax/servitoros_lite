@@ -1,7 +1,8 @@
 class Execution < ActiveRecord::Base
 
   acts_as_model_with_status({new: 1 , initialized: 2, running: 3, finished: 4, error: 100}, :default => :new, :column => :status)
-  attr_accessible :user_id, :input_parameters, :name, :description
+
+  serialize :output
 
   belongs_to :user
 
@@ -18,10 +19,41 @@ class Execution < ActiveRecord::Base
     save
   end
 
+  def wait!
+    until finished?
+      sleep 1
+      update_status
+    end
+    status
+  end
+
   def update_status
     return unless taverna_id
     self.status = server_run.status
     save
+  end
+
+  def update_results
+    return unless finished?
+
+    results = {}
+    server_run.output_ports.each do |port_id, port|
+      outputs = []
+      port.value.size.times do |i|
+        outputs << {:value => port.value[i], :size => port.size[i] }
+      end
+      results[port_id] = outputs
+    end
+    self.results = results
+  end
+
+  def update_results!
+    update_results
+    save
+  end
+
+  def finished?
+    status == :finished
   end
 
   def running?
