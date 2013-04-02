@@ -1,6 +1,7 @@
 class Execution < ActiveRecord::Base
 
   acts_as_model_with_status({new: 1 , initialized: 2, running: 3, finished: 4, error: 100}, :default => :new, :column => :status)
+  attr_accessible :name, :description, :user_id
 
   serialize :output
 
@@ -30,6 +31,10 @@ class Execution < ActiveRecord::Base
   def update_status
     return unless taverna_id
     self.status = server_run.status
+  end
+
+  def update_status!
+    update_status
     save
   end
 
@@ -64,7 +69,7 @@ class Execution < ActiveRecord::Base
     status == :initialized
   end
 
-  private 
+  private
 
   def server
     @server ||= T2Server::Server.new(server_uri, connection_params)
