@@ -11,6 +11,7 @@ class ExecutionsController < ApplicationController
   def create
     @execution = Execution.new(post_params)
     if @execution.save
+      @execution.run!
       redirect_to :action => :index
     else
       render :action => :show
