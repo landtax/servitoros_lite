@@ -1,11 +1,19 @@
 class ExecutionsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :except => [:notify]
+  protect_from_forgery :except => [:notify]
+  check_authorization :except => [:notify]
 
   def index
     @executions = current_user.executions.page params[:page]
   end
 
   def show
+  end
+
+  def new
+    new_count = current_user.executions.count
+    @execution = Execution.new(name: "New job #{new_count}")
+    render :show
   end
 
   def create
@@ -18,12 +26,15 @@ class ExecutionsController < ApplicationController
     end
   end
 
-  def new
-    new_count = current_user.executions.count
-    @execution = Execution.new(name: "New job #{new_count}")
-    render :show
+  def notify
+    execution = Execution.find_by_taverna_id(params[:id])
+    execution.update_status
+    if execution.finished?
+      execution.update_results
+    end
+    execution.save
+    render :nothing => true
   end
-
 
   private
 

@@ -24,6 +24,7 @@ class Execution < ActiveRecord::Base
     until finished?
       sleep 1
       update_status
+      update_results
     end
     status
   end

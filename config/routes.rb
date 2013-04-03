@@ -5,7 +5,9 @@ SoaplabMajordomo::Application.routes.draw do
 
   resources :users, :only => :index 
 
-  resources :executions
+  resources :executions do
+    member { post 'notify' }
+  end
 
   root :to => 'home#index'
 
