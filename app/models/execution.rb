@@ -20,10 +20,11 @@ class Execution < ActiveRecord::Base
     save
   end
 
-  def wait!
+  def wait
     until finished?
       sleep 1
       update_status
+      update_results
     end
     status
   end

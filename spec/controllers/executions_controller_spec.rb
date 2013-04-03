@@ -44,6 +44,21 @@ describe ExecutionsController do
       end
 
     end
+
+    describe "#notify" do
+      before do
+        Execution.should_receive(:find_by_taverna_id).and_return(execution)
+        execution.should_receive(:update_status)
+        execution.should_receive(:finished?).and_return(true)
+        execution.should_receive(:update_results)
+        execution.should_receive(:save)
+
+        post :notify, :id => "96368d3b-3055-400d-89c1-2ead439230bf"
+      end
+      let(:execution) { current_user.executions.first }
+
+      it { expect(assigns(:execution)) }
+    end
   end
 
 
