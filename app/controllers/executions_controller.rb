@@ -26,14 +26,21 @@ class ExecutionsController < ApplicationController
     end
   end
 
-  def notify
-    execution = Execution.find_by_taverna_id(params[:id])
-    execution.update_status
-    if execution.finished?
-      execution.update_results
+  def update
+    @execution = Execution.new(post_params)
+    if @execution.save
+      render :action => :show
     end
-    execution.save
-    render :nothing => true
+  end
+
+  def notify
+    @execution = Execution.find_by_taverna_id(params[:id])
+    @execution.update_status
+    if @execution.finished?
+      @execution.update_results
+    end
+    @execution.save
+    redirect_to execution_path(@execution)
   end
 
   private

@@ -45,6 +45,14 @@ describe ExecutionsController do
 
     end
 
+    describe "#update" do
+      before { put_update }
+      let(:update_params) {{:id => current_user.executions.first.id, :execution => {:name => "New name" }}}
+
+      it { expect(assigns(:execution)) }
+      it { expect(response).to render_template('show') }
+    end
+
     describe "#notify" do
       before do
         Execution.should_receive(:find_by_taverna_id).and_return(execution)
