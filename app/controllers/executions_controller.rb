@@ -27,7 +27,6 @@ class ExecutionsController < ApplicationController
   end
 
   def update
-    @execution = Execution.new(post_params)
     if @execution.save
       render :action => :show
     end
