@@ -2,14 +2,20 @@ development:
   uri: 'https://localhost:8443/taverna-server/'
   username:
   password:
+  verify_peer: Yes
+  ssl_version: SSLv3
 
 test:
   uri: 'https://localhost:8443/taverna-server/'
   username:
   password:
+  verify_peer: Yes
+  ssl_version: SSLv3
 
 production:
   uri: 'https://localhost:8443/taverna-server/'
   username:
   password:
+  verify_peer: Yes
+  ssl_version: SSLv3
 

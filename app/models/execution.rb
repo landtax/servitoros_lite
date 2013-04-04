@@ -92,8 +92,8 @@ class Execution < ActiveRecord::Base
 
   def connection_params
     conn_params = T2Server::DefaultConnectionParameters.new
-    conn_params[:verify_peer] = false
-    conn_params[:ssl_version] = :SSLv3
+    conn_params[:verify_peer] = Rails.configuration.taverna_server.verify_peer
+    conn_params[:ssl_version] = Rails.configuration.taverna_server.ssl_version
     conn_params
   end
 
