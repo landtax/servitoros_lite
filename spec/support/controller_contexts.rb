@@ -3,6 +3,7 @@ shared_context "controller_spec" do
   let(:get_index) { get :index }
   let(:get_show) { get :show, show_params }
   let(:post_create) { post :create, create_params }
+  let(:put_update) { put :update, update_params }
 end
 
 shared_context "with_current_user" do

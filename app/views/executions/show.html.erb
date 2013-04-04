@@ -6,8 +6,45 @@
 <div class="row">
   <%= simple_form_for @execution, :html => {:class => ''} do |f| %>
     <%= f.input :user_id, :as => :hidden %>
-    <%= f.input :name %>
-    <%= f.input :description,  :input_html => { rows: 3, class: 'span4'} %>
-    <%= f.button :submit %>
-  <% end %>
+  <%= f.input :name %>
+  <%= f.input :description,  :input_html => { rows: 3, class: 'span4'} %>
+  <%= f.button :submit %>
+<% end %>
 </div>
+
+<% if @execution.taverna_id %>
+  <div class="row">
+    <h4> Execution Properties </h4>
+    <dl class="dl-horizontal">
+      <dt>Taverna Id</dt>
+      <dd><%= @execution.taverna_id %></dd>
+      <dt>Status</dt>
+      <dd><%= @execution.status.to_s.humanize %>
+      <% unless @execution.finished? %>
+        <%= link_to notify_execution_path(@execution.taverna_id), :method => :post do %> <i class="icon-repeat"></i> Refresh <% end %></dd>
+      <% end %>
+    </dl>
+  </div>
+
+  <% if @execution.finished? %>
+  <div class="row">
+    <h4> Results </h4>
+    <dl class="dl-horizontal">
+      <% @execution.results.each do |output_id, output| %>
+      <dt><%= output_id.to_s.humanize %></dt>
+      <dd>
+      <ol>
+      <% output.each do |o| %>
+        <li>
+        <%= link_to "Download", o[:value] %> (<%= number_to_human_size(o[:size].to_i) %>)
+        </li>
+      <% end %>
+      </ol>
+      </dd>
+      <% end %>
+    </dl>
+  </div>
+  <% end %>
+<% end %>
+
+
