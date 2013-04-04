@@ -20,8 +20,19 @@ describe Execution do
   it "run, wait and parse results" do
     subject.run!
     subject.wait
-    subject.status.should == :finished
-    subject.results.keys.should == ["output_url"]
-    subject.results["output_url"].size.should == 2
+    expect(subject.status).to eq :finished
+    expect(subject.results.keys).to eq ["output_url"]
+    expect(subject.results["output_url"].size).to eq 2
+  end
+
+  it "should serialize correcly results" do
+    subject.status = :finished
+    
+    results = {:output_1 => [{value: 1, description: 1}, {value: 2, description: 2}]}
+    subject.results = results
+    subject.save
+    subject.reload
+    expect(subject.results.class).to eq results.class
+    expect(subject.results).to eq results
   end
 end
