@@ -3,7 +3,7 @@ class Execution < ActiveRecord::Base
   acts_as_model_with_status({new: 1 , initialized: 2, running: 3, finished: 4, error: 100}, :default => :new, :column => :status)
   attr_accessible :name, :description, :user_id
 
-  serialize :output
+  serialize :results
 
   belongs_to :user
 
@@ -46,7 +46,7 @@ class Execution < ActiveRecord::Base
     server_run.output_ports.each do |port_id, port|
       outputs = []
       port.value.size.times do |i|
-        outputs << {:value => port.value[i], :size => port.size[i] }
+        outputs << {:value => port.value[i], :size => port.size[i]}
       end
       results[port_id] = outputs
     end
@@ -87,7 +87,7 @@ class Execution < ActiveRecord::Base
   def credentials
     username = Rails.configuration.taverna_server.username
     password = Rails.configuration.taverna_server.password
-    creds = T2Server::HttpBasic.new(username, password)
+    T2Server::HttpBasic.new(username, password)
   end
 
   def connection_params
