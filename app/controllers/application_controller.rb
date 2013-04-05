@@ -5,4 +5,8 @@ class ApplicationController < ActionController::Base
     redirect_to :root, :alert => exception.message
   end
 
+  def after_sign_in_path_for(resource_or_scope)
+    executions_path
+  end
+
 end

@@ -13,22 +13,14 @@
 </head>
 <body>
 
-
-<%= render :partial => 'layouts/navigation' %>
+<% if params[:action] == "edit" %>
+  <%= render :partial => 'layouts/navigation' %>
+<% end %>
 
 <div id="page" class="container">
   <%= render partial: "layouts/flash_messages", flash: flash %>
   <div class="row">
-    <div class="span9">
       <%= yield %>
-    </div>
-
-    <% if content_for? :side %>
-      <div class="span3">
-        <%= content_for :side %>
-      </div>
-    <% end %>
-
   </div>
 </div>
 
