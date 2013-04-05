@@ -11,18 +11,17 @@ describe Execution do
 
   it { expect(subject.running?).to be_false }
 
-  it "runs" do
+  it "run, wait and parse results" do
+    subject.should_receive(:create_taverna_run).and_return("taverna_id_1234")
     subject.run!
     expect(subject.initialized?).to be_true
-    expect(subject.taverna_id).not_to be_nil
-  end
+    expect(subject.taverna_id).to eq "taverna_id_1234"
 
-  it "run, wait and parse results" do
-    subject.run!
+    subject.should_receive(:server_run).and_return(double({status: :finished}))
+    subject.should_receive(:update_results)
     subject.wait
+
     expect(subject.status).to eq :finished
-    expect(subject.results.keys).to eq ["output_url"]
-    expect(subject.results["output_url"].size).to eq 2
   end
 
   it "should serialize correcly results" do
