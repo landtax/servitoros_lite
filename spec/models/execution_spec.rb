@@ -26,7 +26,7 @@ describe Execution do
 
   it "should serialize correcly results" do
     subject.status = :finished
-    
+
     results = {:output_1 => [{value: 1, description: 1}, {value: 2, description: 2}]}
     subject.results = results
     subject.save
