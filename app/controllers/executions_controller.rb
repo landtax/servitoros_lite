@@ -4,7 +4,7 @@ class ExecutionsController < ApplicationController
   check_authorization :except => [:notify]
 
   def index
-    @executions = current_user.executions.page params[:page]
+    @executions = current_user.executions.order("created_at DESC").page params[:page]
   end
 
   def show
