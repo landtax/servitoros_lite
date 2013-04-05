@@ -49,8 +49,8 @@ SimpleNavigation::Configuration.run do |navigation|
     #                            when the item should be highlighted, you can set a regexp which is matched
     #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>. 
     #
-    primary.item :new_execution, 'New job', new_execution_path, if: Proc.new {user_signed_in?}
-    primary.item :executions, 'My jobs', executions_path, if: Proc.new{user_signed_in?}
+    primary.item :new_execution, 'New job', new_execution_path
+    primary.item :executions, 'My jobs', executions_path
     primary.dom_class = 'nav'
 
     # Add an item which has a sub navigation (same params, but with block)
