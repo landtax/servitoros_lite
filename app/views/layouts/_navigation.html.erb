@@ -6,14 +6,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="#">SOAPLAB Majordomo</a>
+      <a class="brand" href="#">Servitoros</a>
       <div class="nav-collapse">
-        <ul class="nav">
           <% if user_signed_in? %>
-            <li><%= link_to "New job", new_execution_path  %></li>
-            <li><%= link_to "My Jobs", executions_path %></li>
+            <%= render_navigation renderer: :bootstrap %>
           <% end %>
-        </ul>
         <div class="pull-right">
           <% if user_signed_in? %>
             <div id="login_info">
