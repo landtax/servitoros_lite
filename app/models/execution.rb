@@ -10,13 +10,8 @@ class Execution < ActiveRecord::Base
   validates :name, :presence => true
 
   def run!
-    T2Server::Run.create(server_uri, workflow, credentials, connection_params) do |run|
-      setup_inputs(run)
-      run.start
-
-      self.status = :initialized
-      self.taverna_id = run.identifier
-    end
+    self.taverna_id = create_taverna_run
+    self.status = :initialized
     save
   end
 
@@ -114,6 +109,17 @@ class Execution < ActiveRecord::Base
         port.file = files[input]
       end
     end
+  end
+
+  def create_taverna_run
+    new_taverna_id = nil
+    T2Server::Run.create(server_uri, workflow, credentials, connection_params) do |run|
+      setup_inputs(run)
+      run.start
+
+      new_taverna_id = run.identifier
+    end
+    new_taverna_id
   end
 
 end
