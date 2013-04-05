@@ -6,8 +6,10 @@ describe ExecutionsController do
   include_context "with_ability"
 
   let(:current_user) { create(:user) }
-  let(:show_params) {{:id => current_user.executions.first.id }}
+  let(:show_params) {{:id => an_execution.id}}
   let(:create_params) {{:execution => {:name => "New execution"}}}
+  let(:update_params) {{:id => an_execution.id, :execution => {:name => "New name" }}}
+  let(:an_execution) { current_user.executions.first }
 
   context "with permissions" do
 
@@ -34,11 +36,20 @@ describe ExecutionsController do
     end
 
     describe "#create" do
-      before { post_create }
-      it { expect(assigns(:execution)) }
-      it { expect(response).to redirect_to(executions_path) }
+
+      context "with valid data" do
+        before do 
+          Execution.any_instance.should_receive(:run!)
+          post_create 
+        end
+        it { expect(assigns(:execution)) }
+        it { expect(response).to redirect_to(executions_path) }
+      end
 
       context "with invalid data" do
+        before do 
+          post_create 
+        end
         let(:create_params) {{:execution => {:name => "" }}}
         it { expect(response).to render_template('show') }
       end
@@ -46,24 +57,38 @@ describe ExecutionsController do
     end
 
     describe "#update" do
-      before { put_update }
-      let(:update_params) {{:id => current_user.executions.first.id, :execution => {:name => "New name" }}}
+      context "with valid data" do
+        before do
+          Execution.stub(:find).and_return(an_execution)
+          an_execution.should_receive(:update_attributes).with((update_params[:execution].merge({:user_id => current_user.id}).stringify_keys))
+          put_update
+        end
 
-      it { expect(assigns(:execution)) }
-      it { expect(response).to render_template('show') }
+        it { expect(assigns(:execution)) }
+        it { expect(response).to render_template('show') }
+      end
+
+      context "with invalid data" do
+        before do
+          put_update
+        end
+        let(:update_params) {{:id => an_execution.id, :execution => {:name => "" }}}
+
+        it { expect(response).to render_template('show') }
+      end
+
     end
 
     describe "#notify" do
       before do
-        Execution.should_receive(:find_by_taverna_id).and_return(execution)
-        execution.should_receive(:update_status)
-        execution.should_receive(:finished?).and_return(true)
-        execution.should_receive(:update_results)
-        execution.should_receive(:save)
+        Execution.should_receive(:find_by_taverna_id).and_return(an_execution)
+        an_execution.should_receive(:update_status)
+        an_execution.should_receive(:finished?).and_return(true)
+        an_execution.should_receive(:update_results)
+        an_execution.should_receive(:save)
 
         post :notify, :id => "96368d3b-3055-400d-89c1-2ead439230bf"
       end
-      let(:execution) { current_user.executions.first }
 
       it { expect(assigns(:execution)) }
     end
@@ -80,6 +105,11 @@ describe ExecutionsController do
     describe "#create" do
       before { ability.cannot :create, Execution }
       it_behaves_like "create_access_forbidden"
+    end
+
+    describe "#update" do
+      before { ability.cannot :update, Execution }
+      it_behaves_like "update_access_forbidden"
     end
   end
 

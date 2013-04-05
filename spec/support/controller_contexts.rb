@@ -30,3 +30,8 @@ shared_examples "show_access_forbidden" do
   it { expect(response).to redirect_to :root }
 end
 
+shared_examples "update_access_forbidden" do
+  before { put_update }
+  it { expect(response).to redirect_to :root }
+end
+
