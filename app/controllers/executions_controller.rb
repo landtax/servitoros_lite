@@ -27,9 +27,8 @@ class ExecutionsController < ApplicationController
   end
 
   def update
-    if @execution.save
-      render :action => :show
-    end
+    @execution.update_attributes(post_params)
+    render :action => :show
   end
 
   def notify
