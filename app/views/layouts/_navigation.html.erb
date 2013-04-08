@@ -6,23 +6,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="#">SOAPLAB Majordomo</a>
+      <a class="brand" href="#">Servitoros</a>
       <div class="nav-collapse">
-        <ul class="nav">
-          <% if user_signed_in? %>
-            <li><%= link_to "New job", new_execution_path  %></li>
-            <li><%= link_to "My Jobs", executions_path %></li>
-          <% end %>
-        </ul>
+        <% if user_signed_in? %>
+          <%= render_navigation renderer: :bootstrap %>
+        <% end %>
         <div class="pull-right">
           <% if user_signed_in? %>
             <div id="login_info">
               <%= link_to(current_user.email, edit_user_registration_path, :id => "btn_user_settings") %>
               | <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :id => "btn_signout" %>
             </div>
-          <% else %>
-            <%= link_to("Sign in", new_user_session_path, :class => "btn btn-primary", :id => "btn_signin") %>
-            <%= link_to("or Sign up!", new_user_registration_path, :class => "btn btn-primary", :id => "btn_signup") %>
           <% end %>
         </div>
       </div>
