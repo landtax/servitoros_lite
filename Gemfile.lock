@@ -226,6 +226,7 @@ DEPENDENCIES
   kaminari
   less-rails
   mysql2
+  nokogiri
   pry
   rails (= 3.2.13)
   rspec-rails
