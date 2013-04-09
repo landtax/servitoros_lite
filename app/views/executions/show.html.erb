@@ -8,6 +8,17 @@
     <%= f.input :user_id, :as => :hidden %>
   <%= f.input :name %>
   <%= f.input :description,  :input_html => { rows: 3, class: 'span4'} %>
+
+    <h3> Inputs </h3>
+  <%= f.fields_for :input_parameters do |inputs| %> 
+    <% @input_ports.each do |port| %>
+      <% hint = @input_descriptor.send(port).description %>
+      <% hint = "" if hint.upcase == port.to_s.upcase %>
+      <%= inputs.input port, as: :text, hint: hint,  input_html: { rows: 3, class: 'span4'}  %>
+    <% end %>
+
+  <% end %>
+
   <%= f.button :submit %>
 <% end %>
 </div>

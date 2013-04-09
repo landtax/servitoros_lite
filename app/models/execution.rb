@@ -1,7 +1,7 @@
 class Execution < ActiveRecord::Base
 
   acts_as_model_with_status({new: 1 , initialized: 2, running: 3, finished: 4, error: 100}, :default => :new, :column => :status)
-  attr_accessible :name, :description, :user_id
+  attr_accessible :name, :description, :user_id, :input_parameters
 
   serialize :results
   serialize :input_parameters
@@ -10,11 +10,17 @@ class Execution < ActiveRecord::Base
 
   validates :name, :presence => true
 
-  def run!
-    inputs = {'language' => 'es'}
-    files = {'input_urls' => Rails.root.join('config', 'input1.txt').to_s}
 
-    self.input_parameters = {:inputs => inputs, :files => files}
+  def set_example_inputs
+    examples = {:inputs => {}, :files => {}}
+    workflow.input_ports.each do |port|
+      examples[:inputs][port] = workflow.input_descriptor.send(port).example
+    end
+    self.input_parameters = examples
+  end
+
+  def run!
+    set_example_inputs
 
     self.taverna_id = create_taverna_run
     self.status = :initialized
@@ -114,10 +120,10 @@ class Execution < ActiveRecord::Base
 
     in_ports = run.input_ports
     in_ports.each_value do |port|
-      input = port.name
-      if inputs.include? input
+      input = port.name.to_sym
+      if inputs.keys.include? input
         port.value = inputs[input]
-      elsif files.include? input
+      elsif files.keys.include? input
         port.file = files[input]
       end
     end

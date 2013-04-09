@@ -24,6 +24,8 @@ describe ExecutionsController do
       before { get :new }
 
       it { expect(assigns(:execution)) }
+      it { expect(assigns(:input_descriptor)) }
+      it { expect(assigns(:input_ports)) }
       it { expect(response).to render_template('show') }
       it { expect(response).to be_success }
     end
@@ -64,6 +66,8 @@ describe ExecutionsController do
           put_update
         end
 
+        it { expect(assigns(:input_descriptor)) }
+        it { expect(assigns(:input_ports)) }
         it { expect(assigns(:execution)) }
         it { expect(response).to render_template('show') }
       end

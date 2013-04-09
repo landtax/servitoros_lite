@@ -8,11 +8,15 @@ class ExecutionsController < ApplicationController
   end
 
   def show
+    @input_descriptor = @execution.workflow.input_descriptor
+    @input_ports = @execution.workflow.input_ports
   end
 
   def new
     new_count = current_user.executions.count
     @execution = Execution.new(name: "New job #{new_count}")
+    @input_descriptor = @execution.workflow.input_descriptor
+    @input_ports = @execution.workflow.input_ports
     render :show
   end
 
@@ -28,6 +32,8 @@ class ExecutionsController < ApplicationController
 
   def update
     @execution.update_attributes(post_params)
+    @input_descriptor = @execution.workflow.input_descriptor
+    @input_ports = @execution.workflow.input_ports
     render :action => :show
   end
 

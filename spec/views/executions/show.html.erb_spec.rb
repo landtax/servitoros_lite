@@ -8,6 +8,13 @@ describe "executions/show.html.erb" do
     assign(:execution, execution)
   end
 
+  it "should show input fields for workflow paramters" do
+    expect(rendered).to have_selector("textarea[name='execution[input_parameters][inputs][input_urls]']")
+    expect(rendered).to have_selector("input[type='text'][name='execution[input_parameters][files][input_urls]']")
+    expect(rendered).to have_selector("textarea[name='execution[input_parameters][inputs][language]']")
+    expect(rendered).to have_selector("input[type='text'][name='execution[input_parameters][files][language]']")
+  end
+
   it "show properties when available" do
     execution.taverna_id = "taverna_id_1234"
     render
