@@ -4,12 +4,18 @@ class Execution < ActiveRecord::Base
   attr_accessible :name, :description, :user_id
 
   serialize :results
+  serialize :input_parameters
 
   belongs_to :user
 
   validates :name, :presence => true
 
   def run!
+    inputs = {'language' => 'es'}
+    files = {'input_urls' => Rails.root.join('config', 'input1.txt').to_s}
+
+    self.input_parameters = {:inputs => inputs, :files => files}
+
     self.taverna_id = create_taverna_run
     self.status = :initialized
     save
@@ -65,6 +71,10 @@ class Execution < ActiveRecord::Base
     status == :initialized
   end
 
+  def workflow
+    @workflow ||= Workflow.new(File.open(workflow_path))
+  end
+
   private
 
   def server
@@ -75,8 +85,8 @@ class Execution < ActiveRecord::Base
     @server_run ||= server.run(taverna_id, credentials)
   end
 
-  def workflow
-    File.read(Rails.root.join("config","freeling_tagging_for_crawled_data_610788.t2flow"))
+  def workflow_path
+    Rails.root.join("config","freeling_tagging_for_crawled_data_610788.t2flow")
   end
 
   def credentials
@@ -97,8 +107,10 @@ class Execution < ActiveRecord::Base
   end
 
   def setup_inputs run
-    inputs = {'language' => 'es'}
-    files = {'input_urls' => Rails.root.join('config', 'input1.txt').to_s}
+    params = input_parameters
+
+    inputs = params[:inputs]
+    files = params[:files]
 
     in_ports = run.input_ports
     in_ports.each_value do |port|
@@ -113,7 +125,7 @@ class Execution < ActiveRecord::Base
 
   def create_taverna_run
     new_taverna_id = nil
-    T2Server::Run.create(server_uri, workflow, credentials, connection_params) do |run|
+    T2Server::Run.create(server_uri, workflow.xml_content, credentials, connection_params) do |run|
       setup_inputs(run)
       run.start
 
