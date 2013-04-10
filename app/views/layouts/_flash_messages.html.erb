@@ -1,5 +1,5 @@
-<% unless flash.empty? %>
-  <% flash.delete_if{|type, message| message.empty?}.each do |type, message| %>
+<% unless flash.nil? %> 
+  <% flash.to_hash.delete_if{|type, message| message.empty?}.each do |type, message| %>
     <div class="alert <%= bootstrap_class_for(type) %> fade in">
     <button class="close" data-dismiss="alert">×</button>
     <%= message %>
