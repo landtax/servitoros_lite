@@ -1,3 +1,4 @@
+<% inputs_disabled = !@execution.new_record? %>
 <div class="row">
   <h1><%= @execution.name.nil? ? "New Job" : @execution.name %></h1>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
@@ -10,11 +11,15 @@
   <%= f.input :description,  :input_html => { rows: 3, class: 'span4'} %>
 
     <h3> Inputs </h3>
-  <%= f.fields_for :input_parameters do |inputs| %> 
+  <%= f.fields_for :input_parameters do |input_params| %> 
     <% @input_ports.each do |port| %>
-      <% hint = @input_descriptor.send(port).description %>
-      <% hint = "" if hint.upcase == port.to_s.upcase %>
-      <%= inputs.input port, as: :text, hint: hint,  input_html: { rows: 3, class: 'span4'}  %>
+
+      <%= input_params.fields_for :inputs do |inputs| %>
+          <% hint = @input_descriptor.send(port).description %>
+          <% hint = "" if hint.upcase == port.to_s.upcase %>
+          <% value = @execution.input_parameters[:inputs][port] %>
+          <%= inputs.input port, as: :text, hint: hint, disabled: inputs_disabled, input_html: {value: value, rows: 3, class: 'span4'}  %>
+      <% end %>
     <% end %>
 
   <% end %>
