@@ -108,8 +108,8 @@ class Execution < ActiveRecord::Base
   def setup_inputs run
     params = input_parameters
 
-    inputs = params[:inputs]
-    files = params[:files]
+    inputs = params[:inputs] || {}
+    files = params[:files] || {} 
 
     in_ports = run.input_ports
     in_ports.each_value do |port|

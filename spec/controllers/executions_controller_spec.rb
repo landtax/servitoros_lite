@@ -64,6 +64,18 @@ describe ExecutionsController do
         it { expect(response).to render_template('show') }
       end
 
+      context "with invalid input_parameters" do
+        before do 
+          post_create 
+        end
+        let(:input_parameters) do
+          {"inputs"=> {"input_urls"=>
+                       "",
+                         "language"=>""}}
+        end
+        it { expect(response).to redirect_to(executions_path) }
+      end
+
     end
 
     describe "#update" do
