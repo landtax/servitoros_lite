@@ -10,11 +10,19 @@ class Workflow
   end
 
   def input_ports
-    input_descriptor.marshall_dump.keys
+    input_descriptor.marshal_dump.keys
   end
 
   def xml_content
     File.read(file)
+  end
+
+  def example_inputs_parameters
+    examples = {:inputs => {}, :files => {}}
+    input_ports.each do |port|
+      examples[:inputs][port] = input_descriptor.send(port).example
+    end
+    examples
   end
 
   private

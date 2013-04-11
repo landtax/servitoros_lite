@@ -7,9 +7,16 @@ describe ExecutionsController do
 
   let(:current_user) { create(:user) }
   let(:show_params) {{:id => an_execution.id}}
-  let(:create_params) {{:execution => {:name => "New execution"}}}
   let(:update_params) {{:id => an_execution.id, :execution => {:name => "New name" }}}
   let(:an_execution) { current_user.executions.first }
+  let(:create_params) do 
+    {:execution => {:name => "New execution", :input_parameters => input_parameters  } }
+  end
+  let(:input_parameters) do
+    {"inputs"=> {"input_urls"=>
+                 "http://nlp.ilsp.gr/panacea/D4.3/data/201109/ENV_ES/1.xml\r\nhttp://nlp.ilsp.gr/panacea/D4.3/data/201109/ENV_ES/2.xml",
+                   "language"=>"es"}}
+  end
 
   context "with permissions" do
 
@@ -24,6 +31,8 @@ describe ExecutionsController do
       before { get :new }
 
       it { expect(assigns(:execution)) }
+      it { expect(assigns(:input_descriptor)) }
+      it { expect(assigns(:input_ports)) }
       it { expect(response).to render_template('show') }
       it { expect(response).to be_success }
     end
@@ -43,6 +52,7 @@ describe ExecutionsController do
           post_create 
         end
         it { expect(assigns(:execution)) }
+        it { expect(assigns(:execution).input_parameters).to eq input_parameters }
         it { expect(response).to redirect_to(executions_path) }
       end
 
@@ -52,6 +62,18 @@ describe ExecutionsController do
         end
         let(:create_params) {{:execution => {:name => "" }}}
         it { expect(response).to render_template('show') }
+      end
+
+      context "with invalid input_parameters" do
+        before do 
+          post_create 
+        end
+        let(:input_parameters) do
+          {"inputs"=> {"input_urls"=>
+                       "",
+                         "language"=>""}}
+        end
+        it { expect(response).to redirect_to(executions_path) }
       end
 
     end
@@ -64,6 +86,8 @@ describe ExecutionsController do
           put_update
         end
 
+        it { expect(assigns(:input_descriptor)) }
+        it { expect(assigns(:input_ports)) }
         it { expect(assigns(:execution)) }
         it { expect(response).to render_template('show') }
       end

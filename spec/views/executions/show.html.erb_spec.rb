@@ -4,13 +4,31 @@ describe "executions/show.html.erb" do
 
   let(:user) { create(:user) }
   let(:execution) { user.executions.first } 
+  let(:workflow) { execution.workflow }
+  let(:input_descriptor) { workflow.input_descriptor }
+  let(:input_ports) { workflow.input_ports }
   before do
     assign(:execution, execution)
+    assign(:input_ports, input_ports)
+    assign(:input_descriptor, input_descriptor)
+  end
+
+  it "should show input fields for workflow paramters" do
+    render
+    expect(rendered).to have_selector("textarea[name='execution[input_parameters][inputs][input_urls]']")
+    pending do
+      expect(rendered).to have_selector("input[type='text'][name='execution[input_parameters][files][input_urls]']")
+    end
+    expect(rendered).to have_selector("textarea[name='execution[input_parameters][inputs][language]']")
+    pending do
+      expect(rendered).to have_selector("input[type='text'][name='execution[input_parameters][files][language]']")
+    end
   end
 
   it "show properties when available" do
     execution.taverna_id = "taverna_id_1234"
     render
+    expect(rendered).to have_selector("textarea[name='execution[input_parameters][inputs][input_urls]']")
     expect(rendered).to have_content("taverna_id_1234")
     expect(rendered).to have_content("Execution Properties")
   end
