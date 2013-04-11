@@ -10,18 +10,11 @@ class Execution < ActiveRecord::Base
 
   validates :name, :presence => true
 
-
   def set_example_inputs
-    examples = {:inputs => {}, :files => {}}
-    workflow.input_ports.each do |port|
-      examples[:inputs][port] = workflow.input_descriptor.send(port).example
-    end
-    self.input_parameters = examples
+    self.input_parameters = workflow.example_inputs_parameters
   end
 
   def run!
-    set_example_inputs
-
     self.taverna_id = create_taverna_run
     self.status = :initialized
     save

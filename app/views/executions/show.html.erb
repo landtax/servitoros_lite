@@ -7,24 +7,25 @@
 <div class="row">
   <%= simple_form_for @execution, :html => {:class => ''} do |f| %>
     <%= f.input :user_id, :as => :hidden %>
-  <%= f.input :name %>
-  <%= f.input :description,  :input_html => { rows: 3, class: 'span4'} %>
+
+    <%= f.input :name %>
+    <%= f.input :description,  :input_html => { rows: 3, class: 'span4'} %>
 
     <h3> Inputs </h3>
-  <%= f.fields_for :input_parameters do |input_params| %> 
-    <% @input_ports.each do |port| %>
+    <%= f.fields_for :input_parameters do |input_params| %> 
+      <% @input_ports.each do |port| %>
 
-      <%= input_params.fields_for :inputs do |inputs| %>
-          <% hint = @input_descriptor.send(port).description %>
-          <% hint = "" if hint.upcase == port.to_s.upcase %>
-          <% value = @execution.input_parameters[:inputs][port] %>
-          <%= inputs.input port, as: :text, hint: hint, disabled: inputs_disabled, input_html: {value: value, rows: 3, class: 'span4'}  %>
+        <%= input_params.fields_for :inputs do |inputs| %>
+            <% hint = @input_descriptor.send(port).description %>
+            <% hint = "" if hint.upcase == port.to_s.upcase %>
+            <% value = @execution.input_parameters[:inputs][port] if @execution.input_parameters %>
+            <%= inputs.input port, as: :text, hint: hint, disabled: inputs_disabled, input_html: {value: value, rows: 3, class: 'span4'}  %>
+        <% end %>
       <% end %>
+
     <% end %>
 
-  <% end %>
-
-  <%= f.button :submit %>
+    <%= f.button :submit %>
 <% end %>
 </div>
 
