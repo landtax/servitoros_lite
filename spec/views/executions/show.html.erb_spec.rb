@@ -16,13 +16,7 @@ describe "executions/show.html.erb" do
   it "should show input fields for workflow paramters" do
     render
     expect(rendered).to have_selector("textarea[name='execution[input_parameters][inputs][input_urls]']")
-    pending do
-      expect(rendered).to have_selector("input[type='text'][name='execution[input_parameters][files][input_urls]']")
-    end
     expect(rendered).to have_selector("textarea[name='execution[input_parameters][inputs][language]']")
-    pending do
-      expect(rendered).to have_selector("input[type='text'][name='execution[input_parameters][files][language]']")
-    end
   end
 
   it "show properties when available" do
