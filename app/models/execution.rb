@@ -105,28 +105,36 @@ class Execution < ActiveRecord::Base
     T2Server::Util.strip_uri_credentials(Rails.configuration.taverna_server.uri).first
   end
 
-  def setup_inputs run
+  def set_inputs_and_start run
     params = input_parameters
 
     inputs = params[:inputs] || {}
-    files = params[:files] || {} 
+    files = {}
+
+    inputs.each do |input, input_content| 
+      file = Tempfile.new('taverna_input')
+      file.write input_content
+      file.close
+
+      files[input] = file
+    end
 
     in_ports = run.input_ports
     in_ports.each_value do |port|
-      input = port.name.to_sym
-      if inputs.keys.include? input
-        port.value = inputs[input]
-      elsif files.keys.include? input
-        port.file = files[input]
+      input = port.name
+      if files.keys.include? input
+        port.file = files[input].path
       end
     end
+
+    run.start
+    files.values.each { |f| f.unlink }
   end
 
   def create_taverna_run
     new_taverna_id = nil
     T2Server::Run.create(server_uri, workflow.xml_content, credentials, connection_params) do |run|
-      setup_inputs(run)
-      run.start
+      set_inputs_and_start(run)
 
       new_taverna_id = run.identifier
     end
