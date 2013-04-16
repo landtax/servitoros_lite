@@ -1,5 +1,7 @@
-class Workflow
+class Workflow < ActiveRecord::Base
   attr_accessor :file, :input_params
+  attr_accessible :taverna_workflow
+  has_attached_file :taverna_workflow
 
   def initialize(file)
     self.file = file
