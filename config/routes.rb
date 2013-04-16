@@ -9,7 +9,7 @@ SoaplabMajordomo::Application.routes.draw do
     member { post 'notify' }
   end
 
-  root :to => 'home#index'
+  root :to => 'executions#index'
 
 
   # The priority is based upon order of creation:

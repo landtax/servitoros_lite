@@ -2,6 +2,7 @@ class ExecutionsController < ApplicationController
   load_and_authorize_resource :except => [:notify]
   protect_from_forgery :except => [:notify]
   check_authorization :except => [:notify]
+  before_filter :authenticate_user!
 
   def index
     @executions = current_user.executions.order("created_at DESC").page params[:page]
