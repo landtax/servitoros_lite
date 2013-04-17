@@ -17,6 +17,7 @@ class ExecutionsController < ApplicationController
   def new
     new_count = current_user.executions.count
     @execution = Execution.new(name: "New job #{new_count}")
+    @execution.workflow = Workflow.first
     @execution.set_example_inputs
     show
   end
@@ -49,7 +50,7 @@ class ExecutionsController < ApplicationController
   private
 
   def post_params
-    attributes = params[:execution].slice(:name, :description, :input_parameters)
+    attributes = params[:execution].slice(:name, :description, :input_parameters, :workflow_id)
     attributes[:user_id] = current_user.id
     attributes
   end

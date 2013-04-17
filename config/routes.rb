@@ -9,6 +9,8 @@ SoaplabMajordomo::Application.routes.draw do
     member { post 'notify' }
   end
 
+  resources :workflows
+
   root :to => 'executions#index'
 
 

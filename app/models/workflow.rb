@@ -1,11 +1,9 @@
 class Workflow < ActiveRecord::Base
-  attr_accessor :file, :input_params
-  attr_accessible :taverna_workflow
+  attr_accessor :input_params
+  attr_accessible :name, :description, :taverna_workflow
   has_attached_file :taverna_workflow
 
-  def initialize(file)
-    self.file = file
-  end
+  belongs_to :user
 
   def input_descriptor
     @input_descriptor ||= parse_input_descriptor
@@ -16,7 +14,7 @@ class Workflow < ActiveRecord::Base
   end
 
   def xml_content
-    File.read(file)
+    File.read(File.open(taverna_workflow.path))
   end
 
   def example_inputs_parameters
@@ -30,7 +28,7 @@ class Workflow < ActiveRecord::Base
   private
 
   def xml_document
-    @xml_document ||= Nokogiri::XML(file)
+    @xml_document ||= Nokogiri::XML(File.read(taverna_workflow.path))
   end
 
   def parse_input_descriptor
