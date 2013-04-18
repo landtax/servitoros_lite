@@ -4,18 +4,23 @@ describe ExecutionsController do
   include_context "controller_spec"
   include_context "with_current_user"
   include_context "with_ability"
+  before do
+    sign_in current_user
+  end
 
   let(:current_user) { create(:user) }
   let(:show_params) {{:id => an_execution.id}}
   let(:update_params) {{:id => an_execution.id, :execution => {:name => "New name" }}}
   let(:an_execution) { current_user.executions.first }
+  let(:workflow) {an_execution.workflow}
   let(:create_params) do 
-    {:execution => {:name => "New execution", :input_parameters => input_parameters  } }
+    {:execution => {:name => "New execution", :workflow_id => workflow.id,  :input_parameters => input_parameters  } }
   end
   let(:input_parameters) do
     {"inputs"=> {"input_urls"=>
                  "http://nlp.ilsp.gr/panacea/D4.3/data/201109/ENV_ES/1.xml\r\nhttp://nlp.ilsp.gr/panacea/D4.3/data/201109/ENV_ES/2.xml",
-                   "language"=>"es"}}
+                   "language"=>"es",
+                  "workflow_id" => workflow.id.to_s }}
   end
 
   context "with permissions" do
@@ -49,7 +54,7 @@ describe ExecutionsController do
       context "with valid data" do
         before do 
           Execution.any_instance.should_receive(:run!)
-          post_create 
+          post_create
         end
         it { expect(assigns(:execution)) }
         it { expect(assigns(:execution).input_parameters).to eq input_parameters }
@@ -60,20 +65,22 @@ describe ExecutionsController do
         before do 
           post_create 
         end
-        let(:create_params) {{:execution => {:name => "" }}}
+        let(:create_params) {{:execution => {:name => "", :workflow_id => workflow.id }}}
         it { expect(response).to render_template('show') }
       end
 
       context "with invalid input_parameters" do
         before do 
-          post_create 
+          post_create
         end
         let(:input_parameters) do
           {"inputs"=> {"input_urls"=>
                        "",
-                         "language"=>""}}
+                         "language"=>"",
+                          "workflow_id" => ""}}
         end
-        it { expect(response).to redirect_to(executions_path) }
+        it { expect(assigns(:input_description)) }
+        it { expect(assigns(:input_ports)) }
       end
 
     end

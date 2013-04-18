@@ -8,5 +8,6 @@ FactoryGirl.define do
     description 'Nex execution description'
     input_parameters inputs
     results outputs
+    workflow {FactoryGirl.create(:workflow)}
   end
 end

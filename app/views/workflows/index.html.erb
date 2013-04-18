@@ -7,7 +7,7 @@
         <th>#</th>
         <th>Name</th>
         <th>Description</th>
-        <th></th>
+        <th>Filename</th>
       </tr>
     </thead>
     <tbody>
@@ -17,7 +17,7 @@
         <td><%= workflow.id %> </td>
         <td><%= workflow.name %> </td>
         <td><%= workflow.description %> </td>
-        <td><%= workflow.taverna_workflow.filename %> </td>
+        <td><%= File.basename(workflow.taverna_workflow.path) %> </td>
         <td></td>
       </tr>
     <% end %>
