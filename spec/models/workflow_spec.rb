@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Workflow do
-  subject { Workflow.new(File.open(Rails.root.join('spec/support/workflow_example.t2flow'))) }
+  subject { FactoryGirl.create(:workflow) }
 
   it "should return the correct input params" do
     correct_input_descriptor = {'input_urls' => OpenStruct.new({ 'example' => "http://nlp.ilsp.gr/panacea/D4.3/data/201109/ENV_ES/1.xml\nhttp://nlp.ilsp.gr/panacea/D4.3/data/201109/ENV_ES/2.xml",

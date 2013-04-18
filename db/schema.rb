@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130402100731) do
+ActiveRecord::Schema.define(:version => 20130417085533) do
 
   create_table "executions", :force => true do |t|
     t.string   "taverna_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20130402100731) do
     t.string   "name"
     t.text     "description"
     t.text     "results"
+    t.integer  "workflow_id"
   end
 
   create_table "users", :force => true do |t|
@@ -42,5 +43,17 @@ ActiveRecord::Schema.define(:version => 20130402100731) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "workflows", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "taverna_workflow_file_name"
+    t.string   "taverna_workflow_content_type"
+    t.integer  "taverna_workflow_file_size"
+    t.datetime "taverna_workflow_updated_at"
+  end
 
 end
