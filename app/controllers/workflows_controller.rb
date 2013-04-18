@@ -1,7 +1,7 @@
 class WorkflowsController < ApplicationController
 
   def index
-    @workflows = Workflow.order("name DESC").page params[:page]
+    @workflows = current_user.workflows.order("name DESC").page params[:page]
   end
 
   def new
@@ -11,15 +11,13 @@ class WorkflowsController < ApplicationController
   def create
     @workflow = Workflow.new(post_params)
     @workflow.user = current_user
-    
+
     if @workflow.save
       redirect_to :action => :index
     else
       render :action => :new
     end
-
   end
-
 
   private
 

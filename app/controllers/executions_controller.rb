@@ -11,13 +11,15 @@ class ExecutionsController < ApplicationController
   def show
     @input_descriptor = @execution.workflow.input_descriptor
     @input_ports = @execution.workflow.input_ports
+    @workflow = @execution.workflow
     render :show
   end
 
   def new
+    @workflow = Workflow.find(params[:workflow_id])
     new_count = current_user.executions.count
     @execution = Execution.new(name: "New job #{new_count}")
-    @execution.workflow = Workflow.first
+    @execution.workflow = @workflow
     @execution.set_example_inputs
     show
   end
