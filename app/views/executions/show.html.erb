@@ -12,6 +12,17 @@
     <%= f.input :name %>
     <%= f.input :description,  :input_html => { rows: 3, class: 'span4'} %>
 
+    <h2> Workflow information </h2>
+    <dl class="dl-horizontal">
+      <dt> Name:</dt>
+      <dd> <%= @workflow.name %> </dd>
+      <dt> Description:</dt>
+      <dd> <%= @workflow.description %></dd>
+      <dt> Filename:</dt>
+      <dd> <%= @workflow.filename %></dd>
+    </dl>
+
+
     <h3> Inputs </h3>
     <%= f.fields_for :input_parameters do |input_params| %> 
       <% @input_ports.each do |port| %>

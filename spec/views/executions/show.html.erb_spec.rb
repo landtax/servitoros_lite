@@ -9,6 +9,7 @@ describe "executions/show.html.erb" do
   let(:input_ports) { workflow.input_ports }
   before do
     assign(:execution, execution)
+    assign(:workflow, workflow)
     assign(:input_ports, input_ports)
     assign(:input_descriptor, input_descriptor)
   end

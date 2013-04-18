@@ -25,6 +25,10 @@ class Workflow < ActiveRecord::Base
     examples
   end
 
+  def filename
+    File.basename(taverna_workflow.path)
+  end
+
   private
 
   def xml_document

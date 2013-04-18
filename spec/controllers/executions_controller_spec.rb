@@ -33,9 +33,10 @@ describe ExecutionsController do
     end
 
     describe "#new" do
-      before { get :new }
+      before { get :new, :workflow_id => workflow.id }
 
       it { expect(assigns(:execution)) }
+      it { expect(assigns(:workflow)) }
       it { expect(assigns(:input_descriptor)) }
       it { expect(assigns(:input_ports)) }
       it { expect(response).to render_template('show') }

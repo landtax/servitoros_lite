@@ -4,21 +4,20 @@
   <table class="table table-condensed">
     <thead>
       <tr>
-        <th>#</th>
         <th>Name</th>
         <th>Description</th>
         <th>Filename</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
 
     <% @workflows.each do |workflow| %>
       <tr>
-        <td><%= workflow.id %> </td>
         <td><%= workflow.name %> </td>
         <td><%= workflow.description %> </td>
-        <td><%= File.basename(workflow.taverna_workflow.path) %> </td>
-        <td></td>
+        <td><%= workflow.filename %> </td>
+        <td><%= link_to "<i class='icon-play'> </i> Run".html_safe, new_execution_path(:workflow_id => workflow.id), :class => 'btn ' %> </td>
       </tr>
     <% end %>
 
