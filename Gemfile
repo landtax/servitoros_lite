@@ -31,7 +31,7 @@ group :assets do
 end
 
 group :development do
-
+  gem 'capistrano'
 end
 
 group :test do
