@@ -47,8 +47,10 @@ class Execution < ActiveRecord::Base
     results = {}
     server_run.output_ports.each do |port_id, port|
       outputs = []
-      port.value.size.times do |i|
-        outputs << {:value => port.value[i], :size => port.size[i]}
+      port_value = [port.value].flatten
+      port_size = [port.size].flatten
+      port_value.size.times do |i|
+        outputs << {:value => port_value[i], :size => port_size[i]}
       end
       results[port_id] = outputs
     end
