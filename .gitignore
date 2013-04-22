@@ -16,3 +16,5 @@
 /config/database.yml
 /config/taverna_server.yml
 /public/system/*
+/Capfile
+/config/deploy.rb
