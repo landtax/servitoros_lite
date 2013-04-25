@@ -15,6 +15,7 @@
 /tmp
 /config/database.yml
 /config/taverna_server.yml
+/config/unicorn.rb
+/config/deploy.rb
 /public/system/*
 /Capfile
-/config/deploy.rb
