@@ -5,6 +5,8 @@ class Workflow < ActiveRecord::Base
 
   belongs_to :user
 
+  validates :name, :presence => true
+
   def input_descriptor
     @input_descriptor ||= parse_input_descriptor
   end

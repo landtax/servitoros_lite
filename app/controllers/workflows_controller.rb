@@ -6,6 +6,11 @@ class WorkflowsController < ApplicationController
 
   def new
     @workflow = Workflow.new(name: "New workflow")
+    render :show
+  end
+
+  def show
+    @workflow = Workflow.find(params[:id])
   end
 
   def create
@@ -19,7 +24,18 @@ class WorkflowsController < ApplicationController
     end
   end
 
+  def update
+    @workflow = Workflow.find(params[:id])
+    @workflow.update_attributes(put_params)
+    render :show
+  end
+
+
   private
+
+  def put_params
+    params[:workflow].slice(:name, :description)
+  end
 
   def post_params
     params[:workflow].slice(:name, :description, :taverna_workflow)

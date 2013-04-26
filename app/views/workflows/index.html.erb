@@ -14,7 +14,7 @@
 
     <% @workflows.each do |workflow| %>
       <tr>
-        <td><%= workflow.name %> </td>
+        <td><%= link_to workflow.name, workflow_path(workflow) %> </td>
         <td><%= workflow.description %> </td>
         <td><%= workflow.filename %> </td>
         <td><%= link_to "<i class='icon-play'> </i> Run".html_safe, new_execution_path(:workflow_id => workflow.id), :class => 'btn ' %> </td>
@@ -29,6 +29,10 @@
 </div>
 <div class="row">
   <%= paginate @workflows, :theme => 'twitter-bootstrap', :pagination_class => "pagination-small pagination-centered" %>
+</div>
+
+<div class="row">
+  <%= link_to "Upload a new workflow", new_workflow_path, :class => 'btn btn-large'  %>
 </div>
 
 <%= content_for :side do %>
