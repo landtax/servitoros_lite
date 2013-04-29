@@ -4,6 +4,7 @@ shared_context "controller_spec" do
   let(:get_show) { get :show, show_params }
   let(:post_create) { post :create, create_params }
   let(:put_update) { put :update, update_params }
+  let(:delete_destroy) { delete :destroy, destroy_params }
 end
 
 shared_context "with_current_user" do
@@ -32,6 +33,11 @@ end
 
 shared_examples "update_access_forbidden" do
   before { put_update }
+  it { expect(response).to redirect_to :root }
+end
+
+shared_examples "destroy_access_forbidden" do
+  before { delete_destroy }
   it { expect(response).to redirect_to :root }
 end
 
