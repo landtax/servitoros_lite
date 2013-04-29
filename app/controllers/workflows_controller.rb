@@ -1,4 +1,7 @@
 class WorkflowsController < ApplicationController
+  before_filter :authenticate_user!
+  load_and_authorize_resource 
+  check_authorization 
 
   def index
     @workflows = current_user.workflows.order("name DESC").page params[:page]

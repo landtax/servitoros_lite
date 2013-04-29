@@ -72,6 +72,7 @@ describe ExecutionsController do
 
       context "with invalid input_parameters" do
         before do 
+          Execution.any_instance.should_receive(:run!)
           post_create
         end
         let(:input_parameters) do
