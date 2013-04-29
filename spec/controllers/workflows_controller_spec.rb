@@ -16,6 +16,8 @@ describe WorkflowsController do
   let(:create_params) do 
     {:workflow => {:name => "New workflow", :taverna_workflow => fixture_file_upload('/workflow_example.t2flow', 'image/jpg') } }
   end
+  let(:destroy_params) { {:id => a_workflow.id} }
+
 
   context "with permissions" do
 
@@ -57,6 +59,7 @@ describe WorkflowsController do
         end
         let(:create_params) {{:workflow => {:name => ""}}}
         it { expect(response).to render_template('') }
+        it { expect(assigns(:workflow)) }
       end
 
     end
@@ -81,6 +84,14 @@ describe WorkflowsController do
       end
 
     end
+
+    describe "destroy" do
+      before do
+        delete_destroy
+      end
+      it { expect(response).to redirect_to(workflows_path) }
+    end
+
   end
 
 
@@ -99,6 +110,11 @@ describe WorkflowsController do
     describe "#update" do
       before { ability.cannot :update, Workflow }
       it_behaves_like "update_access_forbidden"
+    end
+
+    describe "#destroy" do
+      before { ability.cannot :destroy, Workflow }
+      it_behaves_like "destroy_access_forbidden"
     end
   end
 

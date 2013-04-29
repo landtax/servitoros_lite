@@ -1,7 +1,7 @@
 class WorkflowsController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource 
-  check_authorization 
+  load_and_authorize_resource
+  check_authorization
 
   def index
     @workflows = current_user.workflows.order("name DESC").page params[:page]
@@ -31,6 +31,11 @@ class WorkflowsController < ApplicationController
     @workflow = Workflow.find(params[:id])
     @workflow.update_attributes(put_params)
     render :show
+  end
+
+  def destroy
+    @workflow.destroy
+    redirect_to :action => :index
   end
 
 
