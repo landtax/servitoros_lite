@@ -6,6 +6,7 @@ class Workflow < ActiveRecord::Base
   belongs_to :user
 
   validates :name, :presence => true
+  validates_attachment_presence :taverna_workflow
 
   def input_descriptor
     @input_descriptor ||= parse_input_descriptor
