@@ -18,6 +18,9 @@ gem 'bootstrap-kaminari-views', :git => 'https://github.com/landtax/bootstrap-ka
 gem 'simple-navigation-bootstrap'
 gem 'nokogiri'
 gem "paperclip", "~> 3.0"
+gem 'activeadmin'
+gem 'sass-rails'
+gem "meta_search",    '>= 1.1.0.pre'
 
 # Gems used only for assets and not required
 # in production environments by default.

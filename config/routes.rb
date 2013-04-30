@@ -1,7 +1,13 @@
 SoaplabMajordomo::Application.routes.draw do
+  root :to => 'executions#index'
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   get "home/index"
 
   devise_for :users
+  ActiveAdmin.routes(self)
 
   resources :users, :only => :index 
 
@@ -11,7 +17,6 @@ SoaplabMajordomo::Application.routes.draw do
 
   resources :workflows
 
-  root :to => 'executions#index'
 
 
   # The priority is based upon order of creation:
