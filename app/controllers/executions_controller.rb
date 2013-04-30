@@ -27,7 +27,7 @@ class ExecutionsController < ApplicationController
     @execution = Execution.new(post_params)
     if @execution.save
       @execution.run!
-      redirect_to :action => :index
+      redirect_to executions_path
     else
       show
     end
