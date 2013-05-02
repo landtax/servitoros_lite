@@ -1,4 +1,4 @@
-SoaplabMajordomo::Application.routes.draw do
+Servitoros::Application.routes.draw do
   root :to => 'executions#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -16,8 +16,6 @@ SoaplabMajordomo::Application.routes.draw do
   end
 
   resources :workflows
-
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
