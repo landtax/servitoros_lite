@@ -1,7 +1,7 @@
 class ExecutionsController < ApplicationController
   load_and_authorize_resource :except => [:notify]
   protect_from_forgery :except => [:notify]
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:notify]
 
   def index
     @executions = current_user.executions.order("created_at DESC").page params[:page]
@@ -39,16 +39,25 @@ class ExecutionsController < ApplicationController
   end
 
   def notify
-    @execution = Execution.find_by_taverna_id(params[:id])
-    @execution.update_status
-    if @execution.finished?
-      @execution.update_results
+    find_execution_from_notification
+
+    unless @execution.finished?
+      @execution.update_status
+      if @execution.finished?
+        @execution.update_results
+      end
+      @execution.save
     end
-    @execution.save
+
     redirect_to execution_path(@execution)
   end
 
   private
+
+  def find_execution_from_notification
+    taverna_id = params[:id] || params[:content].scan(/ID=(\S+)/).flatten.first
+    @execution = Execution.find_by_taverna_id(taverna_id) 
+  end
 
   def post_params
     attributes = params[:execution].slice(:name, :description, :input_parameters, :workflow_id)

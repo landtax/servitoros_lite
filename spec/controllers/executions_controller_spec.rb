@@ -112,15 +112,27 @@ describe ExecutionsController do
 
     end
 
-    describe "#notify" do
+    describe "#notify with id" do
       before do
         Execution.should_receive(:find_by_taverna_id).and_return(an_execution)
         an_execution.should_receive(:update_status)
-        an_execution.should_receive(:finished?).and_return(true)
-        an_execution.should_receive(:update_results)
+        an_execution.should_receive(:finished?).twice.and_return(false)
         an_execution.should_receive(:save)
 
         post :notify, :id => "96368d3b-3055-400d-89c1-2ead439230bf"
+      end
+
+      it { expect(assigns(:execution)) }
+    end
+
+    describe "#notify without" do
+      before do
+        Execution.should_receive(:find_by_taverna_id).and_return(an_execution)
+        an_execution.should_receive(:update_status)
+        an_execution.should_receive(:finished?).twice.and_return(false)
+        an_execution.should_receive(:save)
+
+        post :notify, :content => "96368d3b-3055-400d-89c1-2ead439230bf"
       end
 
       it { expect(assigns(:execution)) }

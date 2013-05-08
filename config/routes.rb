@@ -13,6 +13,7 @@ Servitoros::Application.routes.draw do
 
   resources :executions do
     member { post 'notify' }
+    collection { post 'notify' }
   end
 
   resources :workflows

@@ -33,6 +33,8 @@ class Execution < ActiveRecord::Base
 
   def update_status
     return unless taverna_id
+    return if server_run.nil?
+
     self.status = server_run.status
   end
 
@@ -43,6 +45,7 @@ class Execution < ActiveRecord::Base
 
   def update_results
     return unless finished?
+    return if server_run.nil?
 
     results = {}
     server_run.output_ports.each do |port_id, port|

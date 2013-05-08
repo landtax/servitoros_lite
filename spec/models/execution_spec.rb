@@ -17,7 +17,7 @@ describe Execution do
     expect(subject.initialized?).to be_true
     expect(subject.taverna_id).to eq "taverna_id_1234"
 
-    subject.should_receive(:server_run).and_return(double({status: :finished}))
+    subject.should_receive(:server_run).twice.and_return(double({status: :finished}))
     subject.should_receive(:update_results)
     subject.wait
 
