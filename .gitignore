@@ -19,3 +19,7 @@
 /config/deploy.rb
 /public/system/*
 /Capfile
+
+/.rvmrc
+/.ruby-version
+/.ruby-gemset
