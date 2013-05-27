@@ -3,14 +3,11 @@ class Execution < ActiveRecord::Base
   acts_as_model_with_status({new: 1 , initialized: 2, running: 3, finished: 4, error: 100}, :default => :new, :column => :status)
   attr_accessible :name, :description, :user_id, :input_parameters, :workflow_id
 
-
   serialize :results
   serialize :input_parameters
 
   belongs_to :user
   belongs_to :workflow
-
-  validates :name, :presence => true
 
   def set_example_inputs
     self.input_parameters = workflow.example_inputs_parameters

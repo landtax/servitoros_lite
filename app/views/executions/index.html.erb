@@ -1,23 +1,59 @@
-<div class="row"><h1>Executions</h1></div>
+<div class="row">
+  <%= simple_form_for @execution, :html => {:class => ''} do |f| %>
+    <%= f.fields_for :input_parameters do |input_params| %> 
+      <% @input_ports.each do |port| %>
+
+        <%= input_params.fields_for :inputs do |inputs| %>
+            <% hint = @input_descriptor.send(port).description %>
+            <% hint = "" if hint.upcase == port.to_s.upcase %>
+            <% value = @execution.input_parameters[:inputs][port] if @execution.input_parameters %>
+            <%= inputs.input port, as: :text, hint: hint, input_html: {value: value, rows: 3, class: 'span4'}  %>
+        <% end %>
+      <% end %>
+
+    <% end %>
+
+    <%= f.button :submit %>
+<% end %>
+</div>
+
+<div class="row"><h1>Previous executions</h1></div>
 
 <div class="row">
   <table class="table table-condensed">
     <thead>
       <tr>
-        <th>#</th>
         <th>Date</th>
-        <th>Name</th>
         <th>Status</th>
+        <th>Results</th>
       </tr>
     </thead>
     <tbody>
 
     <% @executions.each do |execution| %>
       <tr class="<%= execution_status_class(execution) %>">
-        <td><%= execution.id %> </td>
         <td> <%= l execution.created_at, :format => :list_datetime %></td>
-        <td> <%= link_to (execution.name), execution_path(execution) %></td>
-        <td><%= execution.status.to_s.humanize %></td>
+        <td>
+          <%= execution.status.to_s.humanize %>
+        </td>
+
+        <td>
+        <% if execution.finished? %>
+          <% if execution.results %>
+            <% execution.results.each do |output_id, output| %>
+            <ol>
+            <% output.each do |o| %>
+              <li>
+              <%= link_to "Download", o[:value] %> (<%= number_to_human_size(o[:size].to_i) %>)
+              </li>
+            <% end %>
+            </ol>
+            <% end %>
+          <% else %>
+          Error
+          <% end %>
+        <% end %>
+        </td>
       </tr>
     <% end %>
 
@@ -35,4 +71,5 @@
   <h2>Help</h2>
   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 <% end %>
+
 

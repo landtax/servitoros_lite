@@ -1,5 +1,5 @@
 Servitoros::Application.routes.draw do
-  root :to => 'executions#index'
+  root :to => 'home#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -9,14 +9,10 @@ Servitoros::Application.routes.draw do
   devise_for :users
   ActiveAdmin.routes(self)
 
-  resources :users, :only => :index 
-
   resources :executions do
     member { post 'notify' }
     collection { post 'notify' }
   end
-
-  resources :workflows
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
