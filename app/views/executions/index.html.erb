@@ -7,7 +7,7 @@
             <% hint = @input_descriptor.send(port).description %>
             <% hint = "" if hint.upcase == port.to_s.upcase %>
             <% value = @execution.input_parameters[:inputs][port] if @execution.input_parameters %>
-            <%= inputs.input port, as: :text, hint: hint, input_html: {value: value, rows: 3, class: 'span4'}  %>
+            <%= inputs.input port, as: :text, hint: hint, input_html: {value: value, rows: 3, class: 'span9'}  %>
         <% end %>
       <% end %>
 
