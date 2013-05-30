@@ -1,23 +1,32 @@
+<div class="row"><h3>New Job</h3></div>
 <div class="row">
   <%= simple_form_for @execution, :html => {:class => ''} do |f| %>
-    <%= f.fields_for :input_parameters do |input_params| %> 
-      <% @input_ports.each do |port| %>
 
-        <%= input_params.fields_for :inputs do |inputs| %>
-            <% hint = @input_descriptor.send(port).description %>
-            <% hint = "" if hint.upcase == port.to_s.upcase %>
-            <% value = @execution.input_parameters[:inputs][port] if @execution.input_parameters %>
-            <%= inputs.input port, as: :text, hint: hint, input_html: {value: value, rows: 3, class: 'span9'}  %>
-        <% end %>
+    <%= f.fields_for :input_parameters do |input_params| %> 
+
+      <% port = @input_ports[0] %>
+      <%= input_params.fields_for :inputs do |inputs| %>
+        <% value = @execution.input_parameters[:inputs][port] if @execution.input_parameters %>
+        <%= inputs.input port, as: :text, input_html: {value: value, rows: 3, class: 'span9'}  %>
       <% end %>
 
     <% end %>
 
-    <%= f.button :submit %>
+    <label for="execution_input_parameters_inputs_language" class="text required control-label">
+      <abbr title="required">*</abbr>
+      Language
+    </label>
+
+    <% langs = ["ES", "EN", "CA", "PT", "IT"].map{|lang| [lang, lang.downcase]} %>
+    <%= select "execution[input_parameters][inputs]", "language", langs  %>
+    <br />
+    <br />
+    <%= f.button :submit, :class => "btn-primary" %>
 <% end %>
 </div>
 
-<div class="row"><h1>Previous executions</h1></div>
+<div class="row"> <hr /> </div>
+<div class="row"><h3>Jobs</h3></div>
 
 <div class="row">
   <table class="table table-condensed">
@@ -31,10 +40,12 @@
     <tbody>
 
     <% @executions.each do |execution| %>
-      <tr class="<%= execution_status_class(execution) %>">
+      <tr>
         <td> <%= l execution.created_at, :format => :list_datetime %></td>
         <td>
+          <span class="label <%= execution_status_class(execution) %>">
           <%= execution.status.to_s.humanize %>
+          </span>
         </td>
 
         <td>
@@ -44,7 +55,7 @@
             <ol>
             <% output.each do |o| %>
               <li>
-              <%= link_to "Download", o[:value] %> (<%= number_to_human_size(o[:size].to_i) %>)
+              <%= link_to image_tag("page_white_excel.png"), o[:value] %> <%= link_to "Download", o[:value] %> (<%= number_to_human_size(o[:size].to_i) %>)
               </li>
             <% end %>
             </ol>
