@@ -26,57 +26,8 @@
 </div>
 
 <div class="row"> <hr /> </div>
-<div class="row"><h3>Jobs</h3></div>
 
-<div class="row">
-  <table class="table table-condensed">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Status</th>
-        <th>Results</th>
-      </tr>
-    </thead>
-    <tbody>
-
-    <% @executions.each do |execution| %>
-      <tr>
-        <td> <%= l execution.created_at, :format => :list_datetime %></td>
-        <td>
-          <span class="label <%= execution_status_class(execution) %>">
-          <%= execution.status.to_s.humanize %>
-          </span>
-        </td>
-
-        <td>
-        <% if execution.finished? %>
-          <% if execution.results %>
-            <% execution.results.each do |output_id, output| %>
-            <ol>
-            <% output.each do |o| %>
-              <li>
-              <%= link_to image_tag("page_white_excel.png"), o[:value] %> <%= link_to "Download", o[:value] %> (<%= number_to_human_size(o[:size].to_i) %>)
-              </li>
-            <% end %>
-            </ol>
-            <% end %>
-          <% else %>
-          Error
-          <% end %>
-        <% end %>
-        </td>
-      </tr>
-    <% end %>
-
-    </tbody>
-    <th>
-    </th>
-  </table>
-
-</div>
-<div class="row">
-  <%= paginate @executions, :theme => 'twitter-bootstrap', :pagination_class => "pagination-small pagination-centered" %>
-</div>
+<%= render :partial => "list" %>
 
 <%= content_for :side do %>
   <h2>Help</h2>

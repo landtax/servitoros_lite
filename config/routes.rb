@@ -11,7 +11,10 @@ Servitoros::Application.routes.draw do
 
   resources :executions do
     member { post 'notify' }
-    collection { post 'notify' }
+    collection do 
+      post 'notify'
+      get 'executions_list' 
+    end
   end
 
   # The priority is based upon order of creation:

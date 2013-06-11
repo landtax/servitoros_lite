@@ -36,6 +36,11 @@ class ExecutionsController < ApplicationController
     redirect_to execution_path(@execution)
   end
 
+  def executions_list
+    @executions = current_or_guest_user.executions.order("created_at DESC").page params[:page]
+    render :partial => 'list'
+  end
+
   private
 
   def find_execution_from_notification
