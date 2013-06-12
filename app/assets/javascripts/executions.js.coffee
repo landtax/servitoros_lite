@@ -5,7 +5,7 @@
 
 update_executions = ->
   setTimeout ->
-    $.get "/executions/executions_list", (data) ->
+    $.get window.location.pathname + "/executions_list", (data) ->
       $('#executions_list').html(data)
 
     update_executions()
