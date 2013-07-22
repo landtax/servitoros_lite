@@ -7,6 +7,7 @@ FactoryGirl.define do
     ignore do
       executions_count 5
       workflow_count 3
+      files_count 2
     end
 
     after(:create) do |user, evaluator|
@@ -15,6 +16,10 @@ FactoryGirl.define do
 
     after(:create) do |user, evaluator|
       FactoryGirl.create_list(:workflow, evaluator.workflow_count, user_id: user.id)
+    end
+
+    after(:create) do |user, evaluator|
+      FactoryGirl.create_list(:uploaded_file, evaluator.files_count, user_id: user.id)
     end
 
   end

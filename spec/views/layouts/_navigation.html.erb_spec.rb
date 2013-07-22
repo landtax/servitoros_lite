@@ -9,7 +9,7 @@ describe "layouts/_navigation.html.erb" do
       view.stub(:user_signed_in?).and_return(true)
       view.stub(:current_user).and_return(user)
       render
-      rendered.should have_selector("ul.nav li", :count => 2)
+      rendered.should have_selector("ul.nav li", :count => 3)
     end
 
     it "does not show options when user is not signed_in" do

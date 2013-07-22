@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
 
   has_many :executions
   has_many :workflows
+  has_many :uploaded_files
 end

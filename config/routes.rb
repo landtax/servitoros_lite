@@ -17,6 +17,9 @@ Servitoros::Application.routes.draw do
     end
   end
 
+  resources :uploaded_files, :path => "files", :controller => :files
+  resources :files
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

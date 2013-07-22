@@ -8,5 +8,8 @@ class Ability
 
     can :manage, Workflow, :user_id => user.id
     can :create, Workflow
+
+    can :manage, UploadedFile, :user_id => user.id
+    can :create, UploadedFile
   end
 end
