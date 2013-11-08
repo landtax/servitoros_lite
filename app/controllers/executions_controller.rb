@@ -8,6 +8,8 @@ class ExecutionsController < ApplicationController
     @execution.workflow = Workflow.last
     @execution.set_example_inputs
 
+    @files = current_or_guest_user.uploaded_files.order("name DESC")
+
     @input_descriptor = @execution.workflow.input_descriptor
     @input_ports = @execution.workflow.input_ports
     @executions = current_or_guest_user.executions.order("created_at DESC").page params[:page]
@@ -48,7 +50,14 @@ class ExecutionsController < ApplicationController
     @execution = Execution.find_by_taverna_id(taverna_id) 
   end
 
+  def join_file_urls
+    files = params[:upload_files]
+    file_urls = UploadedFile.find(files).map { |file| URI.join(request.url, file.file.url).to_s }.join("\n")
+    params[:execution][:input_parameters][:inputs][:input_urls] = file_urls
+  end
+
   def post_params
+    join_file_urls if params[:execution][:type] == "upload_files"
     attributes = params[:execution].slice(:input_parameters)
     attributes[:user_id] = current_or_guest_user.id
     attributes

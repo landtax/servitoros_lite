@@ -1,8 +1,8 @@
 class FilesController < ApplicationController
-  before_filter :authenticate_user!
+  helper_method :current_or_guest_user
 
   def index
-    @files = current_user.uploaded_files.order("name DESC").page params[:page]
+    @files = current_or_guest_user.uploaded_files.order("name DESC").page params[:page]
   end
 
   def new
@@ -12,14 +12,14 @@ class FilesController < ApplicationController
 
   def show
     @file = UploadedFile.find(params[:id])
-    authorize! :show, @file
+    #authorize! :show, @file
   end
 
   def create
     @file = UploadedFile.new(post_params)
     authorize! :create, @file
 
-    @file.user = current_user
+    @file.user = current_or_guest_user
 
     if @file.save
       redirect_to :action => :index

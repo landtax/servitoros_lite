@@ -1,7 +1,7 @@
 class Execution < ActiveRecord::Base
 
   acts_as_model_with_status({new: 1 , initialized: 2, running: 3, finished: 4, error: 100}, :default => :new, :column => :status)
-  attr_accessible :name, :description, :user_id, :input_parameters, :workflow_id
+  attr_accessible :name, :description, :user_id, :input_parameters, :workflow_id, :type
 
   serialize :results
   serialize :input_parameters

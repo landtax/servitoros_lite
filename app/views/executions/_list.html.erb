@@ -20,7 +20,7 @@
         <td> <%= l execution.created_at, :format => :list_datetime %></td>
         <td>
           <span class="label <%= execution_status_class(execution) %>">
-          <%= execution.status.to_s.humanize %>
+          <%= execution_status_name(execution) %>
           </span>
         </td>
 

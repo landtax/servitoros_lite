@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130710084855) do
+ActiveRecord::Schema.define(:version => 20131108141003) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20130710084855) do
     t.text     "description"
     t.text     "results"
     t.integer  "workflow_id"
+    t.string   "type"
   end
 
   create_table "uploaded_files", :force => true do |t|

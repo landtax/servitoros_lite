@@ -1,32 +1,7 @@
 <div class="row"><h1>Uploaded files</h1></div>
 
-<div class="row">
-  <table class="table table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Filename</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
+<%= render :partial => 'list' %>
 
-    <% @files.each do |file| %>
-      <tr>
-        <td><%= link_to file.name, file_path(file) %> </td>
-        <td><%= file.description %> </td>
-        <td><%= file.file_file_name %> </td>
-        <td><%= link_to "<i class='icon-play'> </i> download".html_safe, "#", :class => 'btn ' %> </td>
-      </tr>
-    <% end %>
-
-    </tbody>
-    <th>
-    </th>
-  </table>
-
-</div>
 <div class="row">
   <%= paginate @files, :theme => 'twitter-bootstrap', :pagination_class => "pagination-small pagination-centered" %>
 </div>

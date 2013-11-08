@@ -1,7 +1,27 @@
+<%= simple_form_for @execution, :html => {:class => ''} do |f| %>
+
+  <%= f.hidden_field :type, :value => "upload_files" %>
+<%= f.fields_for :input_parameters do |input_params| %> 
+  <% port = @input_ports[2] %>
+  <%= input_params.fields_for :inputs do |inputs| %>
+    <% value = @execution.input_parameters[:inputs][port] if @execution.input_parameters %>
+    <%= inputs.input port, as: :hidden, input_html: {value: value, rows: 3, class: 'span9'}  %>
+  <% end %>
+<% end %>
+
 <div class="row"><h3>New Job</h3></div>
 <div class="row">
-  <%= simple_form_for @execution, :html => {:class => ''} do |f| %>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#upload_files" data-toggle="tab">Using Uploaded Files</a></li>
+    <li><a href="#basic" data-toggle="tab">Using external files</a></li>
+  </ul>
+  <div class="tab-content">
 
+  <div class="tab-pane active" id="upload_files">
+    <%= render :partial => 'file_list', :locals => {f: f} %>
+  </div>
+
+  <div class="tab-pane" id="basic">
     <%= f.fields_for :input_parameters do |input_params| %> 
 
       <% port = @input_ports[0] %>
@@ -10,14 +30,11 @@
         <%= inputs.input port, as: :text, input_html: {value: value, rows: 3, class: 'span9'}  %>
       <% end %>
 
-      <% port = @input_ports[2] %>
-      <%= input_params.fields_for :inputs do |inputs| %>
-        <% value = @execution.input_parameters[:inputs][port] if @execution.input_parameters %>
-        <%= inputs.input port, as: :hidden, input_html: {value: value, rows: 3, class: 'span9'}  %>
-      <% end %>
-
     <% end %>
+  </div>
 
+
+  </div>
     <label for="execution_input_parameters_inputs_language" class="text required control-label">
       <abbr title="required">*</abbr>
       Language

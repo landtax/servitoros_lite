@@ -13,7 +13,10 @@ update_executions = ->
 
 update_executions()
 
-
+$(document).ready ->
+  $('a[data-toggle="tab"]').on 'shown', (e) ->
+    type = $(e.target).attr("href").replace("#", "")
+    $('#execution_type').val(type)
 
 
 
