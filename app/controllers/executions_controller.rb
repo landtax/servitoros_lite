@@ -16,10 +16,14 @@ class ExecutionsController < ApplicationController
   end
 
   def create
-    @execution = Execution.new(post_params)
-    @execution.workflow = Workflow.last
-    if @execution.save
-      @execution.run!
+    if upload_file_input? && params[:upload_files].nil?
+      flash[:error] = "Plese select input files for this execution or use external files."
+    else
+      @execution = Execution.new(post_params)
+      @execution.workflow = Workflow.last
+      if @execution.save
+        @execution.run!
+      end
     end
     redirect_to executions_path
   end
@@ -50,6 +54,10 @@ class ExecutionsController < ApplicationController
     @execution = Execution.find_by_taverna_id(taverna_id) 
   end
 
+  def upload_file_input?
+    params[:execution][:type] == "upload_files"
+  end
+
   def join_file_urls
     files = params[:upload_files]
     file_urls = UploadedFile.find(files).map { |file| URI.join(request.url, file.file.url).to_s }.join("\n")
@@ -57,7 +65,7 @@ class ExecutionsController < ApplicationController
   end
 
   def post_params
-    join_file_urls if params[:execution][:type] == "upload_files"
+    join_file_urls if upload_file_input?
     attributes = params[:execution].slice(:input_parameters)
     attributes[:user_id] = current_or_guest_user.id
     attributes
