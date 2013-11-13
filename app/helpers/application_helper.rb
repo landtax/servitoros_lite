@@ -44,4 +44,12 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def prefix_subdir(path)
+    if Rails.env.production?
+      File.join "/servitoros_lite", path
+    else
+      path
+    end
+  end
+
 end
