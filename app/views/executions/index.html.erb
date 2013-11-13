@@ -50,7 +50,7 @@
 
 <div class="row"> <hr /> </div>
 
-<%= render :partial => "list" %>
+<%= render :partial => "list" unless @executions.empty? %>
 
 <%= content_for :side do %>
   <h2>Help</h2>
