@@ -20,6 +20,9 @@ Servitoros::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  #assets-path helpers need this prefix
+  config.assets.prefix = '/servitoros_lite'
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
