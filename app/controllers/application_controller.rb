@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :set_locale
 
   rescue_from CanCan::AccessDenied do |exception| 
     redirect_to :root, :alert => exception.message
@@ -7,6 +8,11 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(resource_or_scope)
     new_user_session_path
+  end
+  
+  def set_locale
+    session[:locale] = params[:locale]
+    I18n.locale = session[:locale]
   end
 
   # if user is logged in, return current_user, else return guest_user
