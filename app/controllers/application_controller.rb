@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
   
   def set_locale
-    session[:locale] = params[:locale]
+    session[:locale] = params[:locale].to_sym if params[:locale]
     I18n.locale = session[:locale]
   end
 
