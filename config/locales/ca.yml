@@ -2,7 +2,13 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 ca:
-  name: "Català"
+  name: "Catala"
+  home: "Inici"
+  executions: "Execucions"
+  more_info: "Mes informació"
+  files: "Arxius"
+
+
   time:
     formats:
       list_datetime: "%d/%m/%Y %H:%M"

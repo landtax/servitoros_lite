@@ -3,7 +3,10 @@
 
 en:
   name: "English"
-  hello: "Hello world"
+  home: "Home"
+  executions: "Executions"
+  more_info: "More info"
+  files: "Files"
   time:
     formats:
       list_datetime: "%d/%m/%Y %H:%M"

@@ -3,6 +3,10 @@
 
 es:
   name: "Español"
+  home: "Inicio"
+  executions: "Ejecuciones"
+  more_info: "Mas información"
+  files: "Archivos"
   time:
     formats:
       list_datetime: "%d/%m/%Y %H:%M"
