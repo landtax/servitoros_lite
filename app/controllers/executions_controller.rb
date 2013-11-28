@@ -60,7 +60,6 @@ class ExecutionsController < ApplicationController
 
   def join_file_urls
     files = params[:upload_files]
-    binding.pry
     file_urls = UploadedFile.find(files).map { |file| URI.join("http://#{UPLOADED_FILES_BASE_URL}", "#{PREFIX_SUBDIR}#{file.file.url}").to_s }.join("\n")
     params[:execution][:input_parameters][:inputs][:input_urls] = file_urls
   end
