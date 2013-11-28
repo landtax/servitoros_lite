@@ -45,11 +45,7 @@ module ApplicationHelper
   end
 
   def prefix_subdir(path)
-    if Rails.env.production?
-      File.join "/servitoros_lite", path
-    else
-      path
-    end
+      File.join PREFIX_SUBDIR, path
   end
 
 end

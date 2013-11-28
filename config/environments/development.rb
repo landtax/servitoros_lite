@@ -47,3 +47,4 @@ Servitoros::Application.configure do
 end
 
 UPLOADED_FILES_BASE_URL = "localhost:3000"
+PREFIX_SUBDIR = ""
