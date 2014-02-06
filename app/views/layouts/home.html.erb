@@ -15,24 +15,34 @@
 
 <div class="container-narrow">
 
-  <div class="masthead">
-    <div class="row">
-      <div class="pull-right">
+  <div class="row">
+    <div class="span6" id="header-left">
+      <%= link_to image_tag "logo-contawords.png", :id => "logo-cw" %>
+      <h1 id="jumbo-name">Conta<span class="blue">Words</span></h1>
+      <%= image_tag "logo-clarin.png", :id => "logo-clarin" %>
+    </div>
+
+    <div class="pull-right">
+      <div class="row pull-right">
         <%= select_tag :language,
           options_for_select(I18n.available_locales.to_a.map{ |locale| [t('name', :locale => locale), locale] },
                              I18n.locale.to_sym) %>
-      </div>
+       </div>
+
+       <div class="row">
+         <%= link_to "¡Empieza a usarlo ya mismo!", executions_path, :class => "btn btn-large btn-warning", :id => "engage-btn"  %>
+       </div>
     </div>
-    <ul class="nav nav-pills pull-right">
-    </ul>
   </div>
 
-  <hr>
-
+  <div class="container main">
    <%= yield %>
+  </div>
 
   <div class="footer">
-    <p>&copy; Universitat Pompeu Fabra - IULA 2013</p>
+    <span>&copy; Universitat Pompeu Fabra - IULA 2013 </span>
+    <%= image_tag "logo-eu.png" %>
+    <%= image_tag "logo-generalitat.png" %>
   </div>
 
 </div> <!-- /container -->

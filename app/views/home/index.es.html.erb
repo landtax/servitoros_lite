@@ -1,76 +1,105 @@
-
-  <div class="jumbotron">
-    <h1>ContaWords</h1>
-    <br />
-    <p>
-    <%= link_to "¡Empieza a usarlo ya mismo!", executions_path, :class => "btn btn-large btn-success"  %>
-    </p>
+<div class="row">
+  <div class="span6">
+    <p class="lead"> ContaWords es una aplicación que cuenta las palabras de los textos que quieras y...  </p>
   </div>
+</div>
 
-  <hr>
-
-    <p class="lead"> Conta Words es una aplicación que cuenta las palabras de los textos que quieras y...  </p>
-
-  <div class="row-fluid marketing">
-    <div class="span6">
-      <h4>Clasifica</h4>
-      <p> Cuenta la frecuencia de cada palabra según si es nombre, verbo y/o adjetivo. </p>
-
-      <h4> Reconoce </h4>
-      <p> Palabras se relacionan con otras de forma especial, como "cometer crímenes" o "política monetaria".  </p>
-    </div>
-
-    <div class="span6">
-      <h4>Encuentra</h4>
-      <p> Reconoce nombres de personas o instituciones como “Audiencia Nacional”.  </p>
-
-      <h4> Flexible y manejable </h4>
-      <p> Los resultados están en una hoja Excel para permitirte filtrarlos y seleccionarlos fácilmente. </p>
-
+<div class="row row-marketing row-headlines">
+  <div class="span6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4><span class="h4bullet"></span>Clasifica</h4>
+        <p> Cuenta la frecuencia de cada palabra según si es nombre, verbo y/o adjetivo. </p>
+      </div>
     </div>
   </div>
 
-  <hr>
+  <div class="span6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4><span class="h4bullet"></span> Reconoce </h4>
+        <p> Palabras se relacionan con otras de forma especial, como "cometer crímenes" o "política monetaria".  </p>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <div class="row-fluid"><h2>Opiniones de usuarios</h2></div>
+<div class="row row-marketing row-headlines">
+  <div class="span6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4><span class="h4bullet"></span>Encuentra</h4>
+        <p> Reconoce nombres de personas o instituciones como “Audiencia Nacional”.  </p>
+      </div>
+    </div>
+  </div>
+  <div class="span6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4><span class="h4bullet"></span> Flexible y manejable </h4>
+        <p> Los resultados están en una hoja Excel para permitirte filtrarlos y seleccionarlos fácilmente. </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row row-marketing row-headlines" id="reviews-panel">
+  <div class="">
+    <div class="row">
+      <div class="span6">
+        <h4>Opiniones de usuarios</h4>
+      </div>
+    </div>
   <div class="row">
-    <div class="span10">
-
-
-    <blockquote><p>"yo lo he utilizado para analizar páginas de opinión y twitts". <small>Silvia</small></p></blockquote>
-    <blockquote><p>"es muy fácil generar una lista de las palabras de unos documentos cualquiera y ver las más frecuentes". <small>Lauren</small></p></blockquote>
-    <blockquote><p>"lo utilizamos para seguir los textos de la campaña electoral". <small>David</small></p></blockquote>
-    <blockquote><p>"fue fácil obtener la frecuencia de secuencias de palabras". <small>Sheila</small></p></blockquote>
-    <blockquote><p>"sólamente hay que bajarse la aplicación y decirle la dirección web de los textos". <small>Marc</small></p></blockquote>
-    <blockquote><p>"copié la dirección del texto tal como la ponía en la biblioteca digital y en un rato me hizo el excel con toda la información de frecuencia que necesitaba". <small>Mikel</small></p></blockquote>
-
+    <div class="span1" id="arrow-left">
+      <a href="#" class="btn btn-small"> <i class="icon-arrow-left"></i></a>
+    </div>
+    <div class="span9" id="reviews-canvas">
+      <ul class="unstyled">
+        <li>
+        <p><strong>"yo lo he utilizado para analizar páginas de opinión y twitts".</strong><br /> <small>Silvia</small></p>
+          <p><strong>"es muy fácil generar una lista de las palabras de unos documentos cualquiera y ver las más frecuentes".</strong> <br /><small>Lauren</small></p>
+          <p><strong>"lo utilizamos para seguir los textos de la campaña electoral".</strong><br /> <small>David</small></p>
+        </li>
+        <%#<li>%>
+          <%#<blockquote><p>"fue fácil obtener la frecuencia de secuencias de palabras". <small>Sheila</small></p></blockquote>%>
+          <%#<blockquote><p>"sólamente hay que bajarse la aplicación y decirle la dirección web de los textos". <small>Marc</small></p></blockquote>%>
+          <%#<blockquote><p>"copié la dirección del texto tal como la ponía en la biblioteca digital y en un rato me hizo el excel con toda la información de frecuencia que necesitaba". <small>Mikel</small></p></blockquote>%>
+        <%#</li>%>
+      </ul>
+    </div>
+    <div class="span1" id="arrow-right">
+      <a href="#" class="btn btn-small"> <i class="icon-arrow-right"></i></a>
+    </div>
     </div>
   </div>
+</div>
 
-  <hr />
+<hr />
 
-  <!--div class="row">
-    <h4>Example documents</h4>
+<!--div class="row">
+<h4>Example documents</h4>
 
-    <table class="table table-condensed">
-      <thead>
-        <tr>
-          <th>Documents</th>
-          <th>&nbsp;</th>
-        </tr>
-      </thead>
-      <tbody>
-      <% (1..10).each do |i| %>
-        <% url = "http://nlp.ilsp.gr/panacea/D4.3/data/201109/ENV_EN/#{i}.xml"  %>
-        <tr>
-          <td><a href="<%= url %>"> <%= url %> </a></td>
-          <td><%= clippy url %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Documents</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% (1..10).each do |i| %>
+      <% url = "http://nlp.ilsp.gr/panacea/D4.3/data/201109/ENV_EN/#{i}.xml"  %>
+      <tr>
+        <td><a href="<%= url %>"> <%= url %> </a></td>
+        <td><%= clippy url %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-  </div-->
+</div-->
 
-  <hr>
+<hr>
 

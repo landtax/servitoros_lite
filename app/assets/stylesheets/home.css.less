@@ -2,38 +2,123 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
- body {
-        padding-top: 20px;
-        padding-bottom: 40px;
-      }
+body {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
 
-      /* Custom container */
-      .container-narrow {
-        margin: 0 auto;
-        max-width: 700px;
-      }
-      .container-narrow > hr {
-        margin: 30px 0;
-      }
+/* Custom container */
+.container-narrow {
+  margin: 0 auto;
+  width: 940px;
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
 
-      /* Main marketing message and sign up button */
-      .jumbotron {
-        margin: 60px 0;
-        text-align: center;
-      }
-      .jumbotron h1 {
-        font-size: 72px;
-        line-height: 1;
-      }
-      .jumbotron .btn {
-        font-size: 21px;
-        padding: 14px 24px;
-      }
+#header-left{
 
-      /* Supporting marketing content */
-      .marketing {
-        margin: 60px 0;
-      }
-      .marketing p + h4 {
-        margin-top: 28px;
-      }
+  #logo-cw{
+    float: left;
+  }
+  #jumbo-name{
+    margin-top: 45px;
+    margin-left: 15px;
+    float: left;
+      letter-spacing: -1px;
+    span.blue{
+      color: #0e7df0;
+
+    }
+  }
+  #logo-clarin{
+    float: left;
+    margin-left: 15px;
+  }
+}
+
+
+div.main{
+  margin-top: 20px;
+
+  p.lead{
+    letter-spacing: -0.5px;
+    color: #4f4f4f;
+    font-size: 18px;
+  }
+}
+
+#engage-btn{
+  margin-top: 50px;
+}
+
+#reviews-panel{
+  border: 1px solid #a6a6a6;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -khtml-border-radius: 15px;
+  border-radius: 15px;
+  padding: 3px 10px 5px 25px;
+  margin-top: 25px;
+
+  margin-left: 1px;
+  background-color: #d8deed;
+
+  #arrow-left{
+    width: 25px;
+    margin: 0px;
+    margin-top: 50px;
+  }
+  #arrow-right{
+    width: 25px;
+    margin: 0px;
+    margin-top: 50px;
+  }
+  #reviews-canvas{
+    width: 845px;
+  }
+
+  h4{
+    padding-left: 23px;
+  }
+
+}
+
+div.panel{
+  border: 1px solid #a6a6a6;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -khtml-border-radius: 15px;
+  border-radius: 15px;
+  padding: 3px 10px 5px 25px;
+  padding-left: 25px;
+  margin-bottom: 1.5em;
+
+  h4{
+    line-height: 24px;
+    span{
+      display: block;
+      float: left;
+      width: 21px;
+      height: 24px;
+      background: transparent url('/assets/bullet.png') no-repeat 0px 0px;
+    }
+  }
+  p {
+    padding-left: 24px;
+  }
+
+}
+
+
+div.footer{
+  background: transparent url("/assets/bottom-line.png") no-repeat bottom;
+  padding-bottom: 30px;
+  text-align: center;
+  span{ margin-top: 20px; }
+  img {
+    display: inline-block;
+    margin-left: 20px;
+    vertical-align: bottom;
+  }
+}
