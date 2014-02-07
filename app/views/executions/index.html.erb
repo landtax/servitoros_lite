@@ -9,7 +9,7 @@
   <% end %>
 <% end %>
 
-<div class="row"><h3>New Job</h3></div>
+<div class="row"><h3><span class="bullet"></span>New Job</h3></div>
 <div class="row">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#upload_files" data-toggle="tab">Using Uploaded Files</a></li>
@@ -22,7 +22,7 @@
   </div>
 
   <div class="tab-pane" id="basic">
-    <%= f.fields_for :input_parameters do |input_params| %> 
+    <%= f.fields_for :input_parameters do |input_params| %>
 
       <% port = @input_ports[0] %>
       <%= input_params.fields_for :inputs do |inputs| %>
@@ -44,7 +44,7 @@
     <%= select "execution[input_parameters][inputs]", "language", langs  %>
     <br />
     <br />
-    <%= f.button :submit, :class => "btn-primary" %>
+    <%= f.button :submit, :class => "btn-warning" %>
 <% end %>
 </div>
 
@@ -53,7 +53,7 @@
 <%= render :partial => "list" unless @executions.empty? %>
 
 <%= content_for :side do %>
-  <h2>Help</h2>
+  <h3><span class="bullet"></span>Help</h3>
   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 <% end %>
 

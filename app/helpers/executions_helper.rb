@@ -2,7 +2,8 @@ module ExecutionsHelper
 
   def execution_status_class(execution)
     case execution.status
-    when :running  then "label-info"
+    when :initialized  then "label-warning"
+    when :running  then "label-warning"
     when :finished  then "label-success"
     when :error then "label-important"
     end
