@@ -4,15 +4,10 @@
   <%= render partial: "layouts/flash_messages", flash: flash %>
   <div class="row">
 
-    <div class="span9">
+    <div class="span12">
       <%= yield %>
     </div>
 
-    <% if content_for? :side %>
-      <div class="span3">
-        <%= content_for :side %>
-      </div>
-    <% end %>
 
   </div>
 </div>

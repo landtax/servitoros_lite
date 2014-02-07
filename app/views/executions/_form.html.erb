@@ -1,0 +1,68 @@
+<%= simple_form_for @execution, :html => {:class => ''} do |f| %>
+
+  <%= f.hidden_field :type, :value => "upload_files" %>
+<%= f.fields_for :input_parameters do |input_params| %>
+  <% port = @input_ports[2] %>
+  <%= input_params.fields_for :inputs do |inputs| %>
+    <% value = @execution.input_parameters[:inputs][port] if @execution.input_parameters %>
+    <%= inputs.input port, as: :hidden, input_html: {value: value, rows: 3}  %>
+  <% end %>
+<% end %>
+
+<div class="row"><h3><span class="bullet"></span> Inputs </h3></div>
+<div class="row" id="input_files_row">
+  <div class="tab-content">
+    <div class="tab-pane active" id="basic">
+      <%= f.fields_for :input_parameters do |input_params| %>
+
+        <% port = @input_ports[0] %>
+        <%= input_params.fields_for :inputs do |inputs| %>
+          <% value = @execution.input_parameters[:inputs][port] if @execution.input_parameters %>
+          <%= inputs.input port, as: :text, input_html: {value: value, rows: 3, class: 'span12'}  %>
+        <% end %>
+
+      <% end %>
+    </div>
+
+    <div class="tab-pane" id="upload_files"> <%= render :partial => 'file_list', :locals => {f: f} %> </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="span5">
+    <% langs = [["Tell us the documents language... :)", ""],["Spanish", "ES"], ["English", "EN"], ["Catalan", "CA"], ["Portuguese", "PT"], ["Italian", "IT"]] %>
+    <%= select "execution[input_parameters][inputs]", "language", langs  %>
+  </div>
+  <div class="span7">
+
+    <div class="btn-group" data-toggle="buttons-radio">
+      <button id="basic_button" type="button" class="btn btn-primary" href="#basic" data-toggle="tab"><i class="icon-globe"> </i>External files</button>
+      <button id="upload_button" type="button" class="btn" href="#upload_files" data-toggle="tab"><i class="icon-folder-open"> </i> Upload Files</button>
+    </div>
+
+    <script type="text/javascript" charset="utf-8">
+      $('#upload_button').click(function (e) {
+          $("#basic_button").removeClass("btn-primary");
+          $("#upload_button").addClass("btn-primary");
+      })
+      $('#basic_button').click(function (e) {
+          $("#upload_button").removeClass("btn-primary");
+          $("#basic_button").addClass("btn-primary");
+      })
+    </script>
+  </div>
+
+</div>
+<div class="row">
+</div>
+<div class="row">
+<button type="submit" class="btn btn-warning" name="commit">
+  <i class="icon-play-circle icon-white"></i> Run now!
+</button>
+      
+</div>
+
+<% end %>
+
+
