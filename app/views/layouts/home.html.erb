@@ -1,7 +1,11 @@
+<% content_for :header_menu do %>
+  <%= link_to "¡Empieza a usarlo ya mismo!", executions_path, :class => "btn btn-large btn-warning", :id => "engage-btn"  %>
+<% end %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>Servitoros</title>
+<title>ContaWords</title>
 <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
   <![endif]-->
@@ -16,23 +20,7 @@
 <div class="container-narrow">
 
   <div class="row">
-    <div class="span6" id="header-left">
-      <%= link_to image_tag "logo-contawords.png", :id => "logo-cw" %>
-      <h1 id="jumbo-name">Conta<span class="blue">Words</span></h1>
-      <%= image_tag "logo-clarin.png", :id => "logo-clarin" %>
-    </div>
-
-    <div class="pull-right">
-      <div class="row pull-right">
-        <%= select_tag :language,
-          options_for_select(I18n.available_locales.to_a.map{ |locale| [t('name', :locale => locale), locale] },
-                             I18n.locale.to_sym) %>
-       </div>
-
-       <div class="row">
-         <%= link_to "¡Empieza a usarlo ya mismo!", executions_path, :class => "btn btn-large btn-warning", :id => "engage-btn"  %>
-       </div>
-    </div>
+    <%= render :partial => 'shared/header' %>
   </div>
 
   <div class="container main">

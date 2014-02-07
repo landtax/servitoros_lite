@@ -48,4 +48,8 @@ module ApplicationHelper
       File.join PREFIX_SUBDIR, path
   end
 
+  def lang_selector
+    select_tag :language, options_for_select(I18n.available_locales.to_a.map{ |locale| [t('name', :locale => locale), locale] }, I18n.locale.to_sym) 
+  end
+
 end

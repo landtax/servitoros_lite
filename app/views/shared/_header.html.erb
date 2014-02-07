@@ -1,0 +1,17 @@
+<div class="span6" id="header-left">
+  <%= link_to image_tag "logo-contawords.png", :id => "logo-cw" %>
+  <h1 id="jumbo-name">Conta<span class="blue">Words</span></h1>
+  <%= image_tag "logo-clarin.png", :id => "logo-clarin" %>
+</div>
+
+<div class="pull-right">
+  <div class="row pull-right"> <%= lang_selector %> </div>
+
+   <div class="row">
+     <% if content_for :header_menu %>
+       <%= yield :header_menu %>
+     <% else %>
+       menu
+     <% end %>
+   </div>
+</div>
