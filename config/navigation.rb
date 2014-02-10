@@ -51,7 +51,7 @@ SimpleNavigation::Configuration.run do |navigation|
     #
     primary.item :home, "<i class='icon-home'>&nbsp;</i>", root_path
     primary.item :executions, t(:executions), executions_path
-    primary.item :files, t(:files), files_path
+    #primary.item :files, t(:files), files_path
     primary.item :more_info, t(:more_info), root_path
     primary.dom_class = 'nav'
 
