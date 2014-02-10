@@ -22,7 +22,7 @@ class FilesController < ApplicationController
     @file.user = current_or_guest_user
 
     if @file.save
-      redirect_to :action => :index
+      redirect_to executions_path
     else
       render :action => :new
     end

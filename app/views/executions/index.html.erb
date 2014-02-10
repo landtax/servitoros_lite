@@ -1,6 +1,10 @@
+<div class="row"><h3><span class="bullet"></span> New Job </h3></div>
+
 <%= render :partial => "form" %>
 
 <%= render :partial => "list" unless @executions.empty? %>
+
+<%= render :partial => "file_form" %>
 
 <%= content_for :side do %>
   <h3><span class="bullet"></span>Describe it!</h3>

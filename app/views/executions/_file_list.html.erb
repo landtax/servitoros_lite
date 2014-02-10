@@ -1,33 +1,45 @@
-<table class="table table-condensed">
-  <thead>
-    <tr>
-      <th></th>
-      <th>File</th>
-    </tr>
-  </thead>
-  <tbody>
+<% if @files.empty? %>
+  <div class="" id="panel-no-files">
+  <p class="text-center" id="no-files">
+  Your work space is empty.  Upload your input files to use them in ContaWords.
+  </p>
+  <p class="text-center">
+<%= link_to "<i class='icon-folder-open'> </i> Upload text files ".html_safe, "#myModal", :"data-toggle" => "modal", :role => "button", :id => "show_file_upload" %>
+  </p>
+
+</div>
+<% else %>
+  <%= link_to "<i class='icon-folder-open'> Upload more files </i>".html_safe, "#myModal", :"data-toggle" => "modal", :role => "button", :class => "btn btn-small" %>
+  <hr />
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Selected</th>
+        <th>File</th>
+        <th>Comments</th>
+      </tr>
+    </thead>
+    <tbody>
 
 
-  <% @files.each do |file| %>
-    <tr>
-      <td> <%= check_box_tag "upload_files[]", file.id %> 
-      &nbsp;
-      <%= file.name %>  </td>
-    <td>
-    <%= file.file_file_name %> </td>
-    </tr>
-  <% end %>
+    <% @files.each do |file| %>
+      <tr>
+        <td> <%= check_box_tag "upload_files[]", file.id %> 
+        &nbsp;
+        <%= file.name %>  </td>
+      <td> <%= file.file_file_name %> </td>
+      <td> <%= link_to "<i class='icon-edit'> </i>".html_safe, "#" %>
+    </td>
+      </tr>
+    <% end %>
 
-  </tbody>
-  <th>
-  </th>
-</table>
+    </tbody>
+    <th>
+    </th>
+  </table>
 
-
-<p> <%= link_to "<i class='icon-upload icon-white'> </i>".html_safe, new_uploaded_file_path, :class => "btn pull-right" %>
+<% end %>
 
 
 </p>
-
-
 

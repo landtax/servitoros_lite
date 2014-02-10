@@ -3,6 +3,6 @@ class UploadedFile < ActiveRecord::Base
   has_attached_file :file
   
   validates_attachment_presence :file
-  validates :name, :presence => true
+  #validates :name, :presence => true
   belongs_to :user
 end

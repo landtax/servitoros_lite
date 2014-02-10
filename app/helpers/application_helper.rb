@@ -52,4 +52,9 @@ module ApplicationHelper
     select_tag :language, options_for_select(I18n.available_locales.to_a.map{ |locale| [t('name', :locale => locale), locale] }, I18n.locale.to_sym) 
   end
 
+  def hidden_if condition
+    " hidden " if condition
+  end
+
+
 end

@@ -9,10 +9,12 @@ class ExecutionsController < ApplicationController
     @execution.set_example_inputs
 
     @files = current_or_guest_user.uploaded_files.order("name DESC")
+    #@files.delete_all
 
     @input_descriptor = @execution.workflow.input_descriptor
     @input_ports = @execution.workflow.input_ports
     @executions = current_or_guest_user.executions.order("created_at DESC").page params[:page]
+    #@executions.destroy_all
   end
 
   def create

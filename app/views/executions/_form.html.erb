@@ -1,3 +1,5 @@
+
+
 <%= simple_form_for @execution, :html => {:class => ''} do |f| %>
 
   <%= f.hidden_field :type, :value => "upload_files" %>
@@ -8,8 +10,6 @@
     <%= inputs.input port, as: :hidden, input_html: {value: value, rows: 3}  %>
   <% end %>
 <% end %>
-
-<div class="row"><h3><span class="bullet"></span> Inputs </h3></div>
 <div class="row" id="input_files_row">
   <div class="tab-content">
     <div class="tab-pane active" id="basic">
@@ -30,15 +30,11 @@
 
 <div class="row">
 
-  <div class="span5">
-    <% langs = [["Tell us the documents language... :)", ""],["Spanish", "ES"], ["English", "EN"], ["Catalan", "CA"], ["Portuguese", "PT"], ["Italian", "IT"]] %>
-    <%= select "execution[input_parameters][inputs]", "language", langs  %>
-  </div>
-  <div class="span7">
+  <div class="span4">
 
-    <div class="btn-group" data-toggle="buttons-radio">
+    <div class="btn-group" id="input_select_buttons" data-toggle="buttons-radio">
       <button id="basic_button" type="button" class="btn btn-primary" href="#basic" data-toggle="tab"><i class="icon-globe"> </i>External files</button>
-      <button id="upload_button" type="button" class="btn" href="#upload_files" data-toggle="tab"><i class="icon-folder-open"> </i> Upload Files</button>
+      <button id="upload_button" type="button" class="btn" href="#upload_files" data-toggle="tab"><i class="icon-folder-open"> </i> Work Space</button>
     </div>
 
     <script type="text/javascript" charset="utf-8">
@@ -52,16 +48,22 @@
       })
     </script>
   </div>
+  <div class="span6">
+    <% langs = [["Tell us the documents language... :)", ""],["Spanish", "ES"], ["English", "EN"], ["Catalan", "CA"], ["Portuguese", "PT"], ["Italian", "IT"]] %>
+    <%= select "execution[input_parameters][inputs]", "language", langs  %>
+  </div>
+  <div class="span2">
+    <button type="submit" class="btn btn-warning" name="commit">
+      <i class="icon-play-circle icon-white"></i> Run now!
+    </button>
+  </div>
 
 </div>
 <div class="row">
 </div>
 <div class="row">
-<button type="submit" class="btn btn-warning" name="commit">
-  <i class="icon-play-circle icon-white"></i> Run now!
-</button>
-      
 </div>
+<hr />
 
 <% end %>
 
