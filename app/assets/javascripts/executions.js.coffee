@@ -17,6 +17,8 @@ $(document).ready ->
   $('#input_select_buttons button').on 'click', (e) ->
     type = $(e.target).attr("href").replace("#", "")
     $('#execution_type').val(type)
+  $('#show_external_files').on 'click', (e) ->
+    $('#basic_button').click()
 
 
 

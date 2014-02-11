@@ -1,10 +1,12 @@
 <% if @files.empty? %>
   <div class="" id="panel-no-files">
   <p class="text-center" id="no-files">
-  Your work space is empty.  Upload your input files to use them in ContaWords.
+  Your workspace is empty. 
   </p>
   <p class="text-center">
-<%= link_to "<i class='icon-folder-open'> </i> Upload text files ".html_safe, "#myModal", :"data-toggle" => "modal", :role => "button", :id => "show_file_upload" %>
+  <%= link_to "<i class='icon-folder-open'> </i> Upload local files ".html_safe, "#myModal", :"data-toggle" => "modal", :role => "button", :id => "show_file_upload" %>
+  <span id="or">or</span>
+  <%= link_to "<i class='icon-globe'> </i> Use files from the Internet ".html_safe, "#", :id => "show_external_files" %>
   </p>
 
 </div>

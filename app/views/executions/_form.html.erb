@@ -1,5 +1,4 @@
 
-
 <%= simple_form_for @execution, :html => {:class => ''} do |f| %>
 
   <%= f.hidden_field :type, :value => "upload_files" %>
@@ -10,9 +9,12 @@
     <%= inputs.input port, as: :hidden, input_html: {value: value, rows: 3}  %>
   <% end %>
 <% end %>
+
 <div class="row" id="input_files_row">
   <div class="tab-content">
-    <div class="tab-pane active" id="basic">
+    <div class="tab-pane active" id="upload_files"> <%= render :partial => 'file_list', :locals => {f: f} %> </div>
+
+    <div class="tab-pane" id="basic">
       <%= f.fields_for :input_parameters do |input_params| %>
 
         <% port = @input_ports[0] %>
@@ -24,7 +26,6 @@
       <% end %>
     </div>
 
-    <div class="tab-pane" id="upload_files"> <%= render :partial => 'file_list', :locals => {f: f} %> </div>
   </div>
 </div>
 
@@ -33,8 +34,8 @@
   <div class="span4">
 
     <div class="btn-group" id="input_select_buttons" data-toggle="buttons-radio">
-      <button id="basic_button" type="button" class="btn btn-primary" href="#basic" data-toggle="tab"><i class="icon-globe"> </i>External files</button>
-      <button id="upload_button" type="button" class="btn" href="#upload_files" data-toggle="tab"><i class="icon-folder-open"> </i> Work Space</button>
+      <button id="upload_button" type="button" class="btn btn-primary" href="#upload_files" data-toggle="tab"><i class="icon-folder-open"> </i> Workspace</button>
+      <button id="basic_button" type="button" class="btn" href="#basic" data-toggle="tab"><i class="icon-globe"> </i>External files</button>
     </div>
 
     <script type="text/javascript" charset="utf-8">
@@ -59,10 +60,7 @@
   </div>
 
 </div>
-<div class="row">
-</div>
-<div class="row">
-</div>
+
 <hr />
 
 <% end %>
