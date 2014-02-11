@@ -2,13 +2,14 @@
 <%= simple_form_for @execution, :html => {:class => ''} do |f| %>
 
   <%= f.hidden_field :type, :value => "upload_files" %>
-<%= f.fields_for :input_parameters do |input_params| %>
-  <% port = @input_ports[2] %>
-  <%= input_params.fields_for :inputs do |inputs| %>
-    <% value = @execution.input_parameters[:inputs][port] if @execution.input_parameters %>
-    <%= inputs.input port, as: :hidden, input_html: {value: value, rows: 3}  %>
+
+  <%= f.fields_for :input_parameters do |input_params| %>
+    <% port = @input_ports[2] %>
+    <%= input_params.fields_for :inputs do |inputs| %>
+      <% value = @execution.input_parameters[:inputs][port] if @execution.input_parameters %>
+      <%= inputs.input port, as: :hidden, input_html: {value: value, rows: 3}  %>
+    <% end %>
   <% end %>
-<% end %>
 
 <div class="row" id="input_files_row">
         <div class="span12">
