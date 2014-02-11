@@ -1,0 +1,49 @@
+
+<div class="navbar" id="main-navigation">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <div class="nav-collapse">
+
+<div class="row">
+
+  <div class="span4">
+
+    <div class="btn-group" id="input_select_buttons" data-toggle="buttons-radio">
+      <button id="upload_button" type="button" class="btn btn-primary" href="#upload_files" data-toggle="tab"><i class="icon-folder-open"> </i> Workspace</button>
+      <button id="basic_button" type="button" class="btn" href="#basic" data-toggle="tab"><i class="icon-globe"> </i>External files</button>
+    </div>
+
+    <script type="text/javascript" charset="utf-8">
+      $('#upload_button').click(function (e) {
+          $("#basic_button").removeClass("btn-primary");
+          $("#upload_button").addClass("btn-primary");
+      })
+      $('#basic_button').click(function (e) {
+          $("#upload_button").removeClass("btn-primary");
+          $("#basic_button").addClass("btn-primary");
+      })
+    </script>
+  </div>
+  <div class="span5">
+    <% langs = [["Tell us the documents language... :)", ""],["Spanish", "ES"], ["English", "EN"], ["Catalan", "CA"], ["Portuguese", "PT"], ["Italian", "IT"]] %>
+    <%= select "execution[input_parameters][inputs]", "language", langs  %>
+  </div>
+  <div class="pull-right">
+    <button type="submit" class="btn btn-warning" name="commit">
+      <i class="icon-play-circle icon-white"></i> Run now!
+    </button>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
