@@ -20,6 +20,7 @@ $(document).ready ->
   $('#show_external_files').on 'click', (e) ->
     $('#basic_button').click()
 
+  $($.cookie('tab')).click()
 
 
 

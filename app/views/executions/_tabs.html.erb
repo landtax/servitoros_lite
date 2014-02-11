@@ -22,10 +22,12 @@
       $('#upload_button').click(function (e) {
           $("#basic_button").removeClass("btn-primary");
           $("#upload_button").addClass("btn-primary");
+          $.cookie('tab', '#upload_button')
       })
       $('#basic_button').click(function (e) {
           $("#upload_button").removeClass("btn-primary");
           $("#basic_button").addClass("btn-primary");
+          $.cookie('tab', '#basic_button')
       })
     </script>
   </div>
