@@ -5,15 +5,18 @@ Servitoros::Application.routes.draw do
   #ActiveAdmin.routes(self)
 
   get "home/index"
+  get "more_info", :to => "home#more_info"
+  get "faq", :to => "home#faq"
+  get "credits", :to => "home#credits"
 
   devise_for :users
   #ActiveAdmin.routes(self)
 
   resources :executions do
     member { post 'notify' }
-    collection do 
+    collection do
       post 'notify'
-      get 'executions_list' 
+      get 'executions_list'
     end
   end
 

@@ -51,8 +51,9 @@ SimpleNavigation::Configuration.run do |navigation|
     #
     primary.item :home, "<i class='icon-home'>&nbsp;</i>", root_path
     primary.item :executions, t(:executions), executions_path
-    #primary.item :files, t(:files), files_path
-    primary.item :more_info, t(:more_info), root_path
+    primary.item :more_info, t(:more_info), more_info_path
+    primary.item :faq, t(:faq), faq_path
+    primary.item :credits, t(:credits), credits_path
     primary.dom_class = 'nav'
 
     # Add an item which has a sub navigation (same params, but with block)
