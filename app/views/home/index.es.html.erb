@@ -51,29 +51,38 @@
         <h4>Opiniones de usuarios</h4>
       </div>
     </div>
-  <div class="row">
+  <div id="mycarousel" class="row carousel slide">
     <div class="span1" id="arrow-left">
-      <a href="#" class="btn btn-small"> <i class="icon-arrow-left"></i></a>
+      <a href="#mycarousel" class="btn btn-small" data-slide="prev"> <i class="icon-arrow-left"></i></a>
     </div>
     <div class="span9" id="reviews-canvas">
-      <ul class="unstyled">
-        <li>
-        <p><strong>"yo lo he utilizado para analizar páginas de opinión y twitts".</strong><br /> <small>Silvia</small></p>
-          <p><strong>"es muy fácil generar una lista de las palabras de unos documentos cualquiera y ver las más frecuentes".</strong> <br /><small>Lauren</small></p>
-          <p><strong>"lo utilizamos para seguir los textos de la campaña electoral".</strong><br /> <small>David</small></p>
-        </li>
-        <%#<li>%>
-          <%#<blockquote><p>"fue fácil obtener la frecuencia de secuencias de palabras". <small>Sheila</small></p></blockquote>%>
-          <%#<blockquote><p>"sólamente hay que bajarse la aplicación y decirle la dirección web de los textos". <small>Marc</small></p></blockquote>%>
-          <%#<blockquote><p>"copié la dirección del texto tal como la ponía en la biblioteca digital y en un rato me hizo el excel con toda la información de frecuencia que necesitaba". <small>Mikel</small></p></blockquote>%>
-        <%#</li>%>
-      </ul>
+      <div class="carousel-inner">
+        <div class="item active">
+          <ul class="unstyled">
+            <li>
+              <p><strong>"yo lo he utilizado para analizar páginas de opinión y twitts".</strong><br /> <small>Silvia</small></p>
+              <p><strong>"es muy fácil generar una lista de las palabras de unos documentos cualquiera y ver las más frecuentes".</strong> <br /><small>Lauren</small></p>
+              <p><strong>"lo utilizamos para seguir los textos de la campaña electoral".</strong><br /> <small>David</small></p>
+            </li>
+          </ul>
+        </div>
+        <div class="item">
+          <ul class="unstyled">
+            <li>
+              <p><strong>"fue fácil obtener la frecuencia de secuencias de palabras". </strong> <br /><small>Sheila</small></p>
+              <p><strong>"sólamente hay que bajarse la aplicación y decirle la dirección web de los textos". </strong> <br /><small>Marc</small></p>
+              <p><strong>"copié la dirección del texto tal como la ponía en la biblioteca digital y en un rato me hizo el excel con toda la información de frecuencia que necesitaba".</strong> <br /> <small>Mikel</small></p>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="span1" id="arrow-right">
-      <a href="#" class="btn btn-small"> <i class="icon-arrow-right"></i></a>
+      <a href="#mycarousel" class="btn btn-small" data-slide="next"> <i class="icon-arrow-right"></i></a>
     </div>
     </div>
   </div>
 </div>
+
 
 
