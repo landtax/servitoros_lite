@@ -10,3 +10,4 @@ es:
   time:
     formats:
       list_datetime: "%d/%m/%Y %H:%M"
+  empieza_usarlo: "¡Empieza a usarlo ya mismo!"
