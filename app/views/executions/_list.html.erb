@@ -25,13 +25,17 @@
         </td>
 
         <td>
-        <% if execution.finished? %>
+        <% if execution.finished? || execution.error? %>
           <% if execution.results %>
             <% execution.results.each do |output_id, output| %>
             <ol>
             <% output.each do |o| %>
               <li>
-              <%= link_to image_tag("page_white_excel.png"), o[:value] %> <%= link_to t(:download), o[:value] %> (<%= number_to_human_size(o[:size].to_i) %>)
+              <% if execution.finished? %>
+                <%= link_to image_tag("page_white_excel.png"), o[:value] %> <%= link_to t(:download), o[:value] %> (<%= number_to_human_size(o[:size].to_i) %>)
+              <% else %>
+                <%= o[:value] %>
+              <% end %>
               </li>
             <% end %>
             </ol>

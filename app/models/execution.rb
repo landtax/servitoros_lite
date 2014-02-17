@@ -51,6 +51,7 @@ class Execution < ActiveRecord::Base
       port_size = [port.size].flatten
       port_value.size.times do |i|
         outputs << {:value => port_value[i], :size => port_size[i]}
+        self.status = :error if port_value[i] =~ /ERROR/
       end
       results[port_id] = outputs
     end
@@ -72,6 +73,11 @@ class Execution < ActiveRecord::Base
 
   def initialized?
     status == :initialized
+  end
+
+  def error=
+    status == :error
+
   end
 
   private
