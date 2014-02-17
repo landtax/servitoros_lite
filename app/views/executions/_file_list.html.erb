@@ -1,12 +1,12 @@
 <% if @files.empty? %>
   <div class="" id="panel-no-files">
   <p class="text-center" id="no-files">
-  Your workspace is empty. 
+  <%= t(:empty_ws) %>
   </p>
   <p class="text-center">
-  <%= link_to "<i class='icon-folder-open'> </i> Upload local files ".html_safe, "#myModal", :"data-toggle" => "modal", :role => "button", :id => "show_file_upload" %>
+  <%= link_to "<i class='icon-folder-open'> </i> #{t(:upload_local_files)} ".html_safe, "#myModal", :"data-toggle" => "modal", :role => "button", :id => "show_file_upload" %>
   <span id="or">or</span>
-  <%= link_to "<i class='icon-globe'> </i> Use files from the Internet ".html_safe, "#", :id => "show_external_files" %>
+  <%= link_to "<i class='icon-globe'> </i> #{t(:use_inet_files)} ".html_safe, "#", :id => "show_external_files" %>
   </p>
 
 </div>
@@ -15,17 +15,16 @@
   <table class="table table-condensed">
     <thead>
       <tr>
-        <th>Selected</th>
-        <th>File</th>
-        <th>Comments</th>
+        <th><%= t(:selected) %></th>
+        <th><%= t(:file) %></th>
+        <th><%= t(:comments) %></th>
       </tr>
     </thead>
     <tbody>
 
-
     <% @files.each do |file| %>
       <tr>
-        <td> <%= check_box_tag "upload_files[]", file.id %> 
+        <td> <%= check_box_tag "upload_files[]", file.id %>
         &nbsp;
         <%= file.name %>  </td>
       <td> <%= file.file_file_name %> </td>
@@ -39,7 +38,7 @@
     </th>
   </table>
 
-  <%= link_to "<i class='icon-folder-open'> Upload more files </i>".html_safe, "#myModal", :"data-toggle" => "modal", :role => "button", :class => "btn btn-small" %>
+  <%= link_to "<i class='icon-folder-open'> #{t(:upload_more_files)} </i>".html_safe, "#myModal", :"data-toggle" => "modal", :role => "button", :class => "btn btn-small" %>
 <% end %>
 
 

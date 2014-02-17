@@ -1,4 +1,3 @@
-<%#<div class="row"><h3><span class="bullet"></span> New Job </h3></div>%>
 <%= simple_form_for @execution, :html => {:class => ''} do |f| %>
 
   <%= f.hidden_field :type, :value => "upload_files" %>
@@ -22,7 +21,7 @@
           <% port = @input_ports[0] %>
           <%= input_params.fields_for :inputs do |inputs| %>
             <% value = @execution.input_parameters[:inputs][port] if @execution.input_parameters %>
-            <%= inputs.input port, as: :text, input_html: {value: value, rows: 10, class: 'span12'}, :label => "Input URLs", :hint => "Paste here URLs directing to documents in .pdf or .txt format. One URL per row."  %>
+            <%= inputs.input port, as: :text, input_html: {value: value, rows: 10, class: 'span12'}, :label => t(:input_urls), :hint => t(:paste_here)  %>
           <% end %>
 
       <% end %>

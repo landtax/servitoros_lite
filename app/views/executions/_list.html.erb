@@ -2,15 +2,15 @@
 
 <div id="executions_list">
 
-  <div class="row"><h3><span class="bullet"></span>Executions</h3></div>
+  <div class="row"><h3><span class="bullet"></span><%= t(:executions) %></h3></div>
 
 <div class="row">
   <table class="table table-condensed">
     <thead>
       <tr>
-        <th>Date</th>
-        <th>Status</th>
-        <th>Results</th>
+        <th><%= t(:date) %></th>
+        <th><%= t(:status) %></th>
+        <th><%= t(:results) %></th>
       </tr>
     </thead>
     <tbody>
@@ -31,7 +31,7 @@
             <ol>
             <% output.each do |o| %>
               <li>
-              <%= link_to image_tag("page_white_excel.png"), o[:value] %> <%= link_to "Download", o[:value] %> (<%= number_to_human_size(o[:size].to_i) %>)
+              <%= link_to image_tag("page_white_excel.png"), o[:value] %> <%= link_to t(:download), o[:value] %> (<%= number_to_human_size(o[:size].to_i) %>)
               </li>
             <% end %>
             </ol>

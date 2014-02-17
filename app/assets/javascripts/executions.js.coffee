@@ -13,7 +13,16 @@ update_executions = ->
 
 update_executions()
 
+
+
+#run_tutorial = ->
+  #$('link_step1').on 'click', (e) ->
+    #$('#link_step1').popover(html: $('#step1').text())
+
+
+
 $(document).ready ->
+  #run_tutorial()
   $('#input_select_buttons button').on 'click', (e) ->
     type = $(e.target).attr("href").replace("#", "")
     $('#execution_type').val(type)
@@ -21,6 +30,10 @@ $(document).ready ->
     $('#basic_button').click()
 
   $($.cookie('tab')).click()
+
+
+
+
 
 
 

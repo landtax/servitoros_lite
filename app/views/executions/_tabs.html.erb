@@ -14,8 +14,8 @@
   <div class="span4">
 
     <div class="btn-group" id="input_select_buttons" data-toggle="buttons-radio">
-      <button id="upload_button" type="button" class="btn btn-primary" href="#upload_files" data-toggle="tab"><i class="icon-folder-open"> </i> Workspace</button>
-      <button id="basic_button" type="button" class="btn" href="#basic" data-toggle="tab"><i class="icon-globe"> </i>External files</button>
+      <button id="upload_button" type="button" class="btn btn-primary" href="#upload_files" data-toggle="tab"><i class="icon-folder-open"> </i> <%= t(:workspace)%></button>
+      <button id="basic_button" type="button" class="btn" href="#basic" data-toggle="tab"><i class="icon-globe"> </i><%= t(:external_files) %></button>
     </div>
 
     <script type="text/javascript" charset="utf-8">
@@ -32,12 +32,12 @@
     </script>
   </div>
   <div class="span5">
-    <% langs = [["Tell us the documents language... :)", ""],["Spanish", "es"], ["English", "en"], ["Catalan", "ca"], ["Portuguese", "pt"], ["Italian", "it"]] %>
+    <% langs = [[t(:tell_document_lang), ""],["Spanish", "es"], ["English", "en"], ["Catalan", "ca"], ["Portuguese", "pt"], ["Italian", "it"]] %>
     <%= select "execution[input_parameters][inputs]", "language", langs  %>
   </div>
   <div class="pull-right">
     <button type="submit" class="btn btn-warning" name="commit">
-      <i class="icon-play-circle icon-white"></i> Run now!
+      <i class="icon-play-circle icon-white"></i> <%= t(:run) %>
     </button>
   </div>
 
