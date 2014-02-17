@@ -10,6 +10,9 @@ en:
   time:
     formats:
       list_datetime: "%d/%m/%Y %H:%M"
+  more_info: "More info."
+  faq: "FAQ"
+  credits: "Credits"
   empieza_usarlo: "Start to use it now!"
   tell_document_lang: "Tell us the documents language... :)"
   date: "Date"
@@ -32,3 +35,7 @@ en:
   close: "Close"
   upload_file: "Upload file"
   run: "Run now!"
+  workspace: "Workspace"
+  external_files: "External files"
+  error_select_input: "Please select input files for this execution or use external files."
+  error_select_lang: "Language of the documents have not been selected."

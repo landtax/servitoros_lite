@@ -10,6 +10,9 @@ es:
   time:
     formats:
       list_datetime: "%d/%m/%Y %H:%M"
+  more_info: "Más info."
+  faq: "Soporte"
+  credits: "Créditos"
   empieza_usarlo: "¡Empieza a usarlo ya mismo!"
   tell_document_lang: "Dinos el idioma de los documentos... :)"
   date: "Fecha"
@@ -32,5 +35,7 @@ es:
   close: "Cerrar"
   upload_file: "Subir archivo"
   run: "Ejecutar"
-  workspace: "Espacio de trabajo"
+  workspace: "Archivos subidos"
   external_files: "Archivos externos"
+  error_select_input: "Por favor selecciona el método de entrada. Archivos subidos o archivos externos"
+  error_select_lang: "El idioma de los documentos de entrada no ha sido selecionado"

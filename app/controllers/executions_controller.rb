@@ -19,9 +19,9 @@ class ExecutionsController < ApplicationController
 
   def create
     if upload_file_input? && params[:upload_files].nil?
-      flash[:error] = "Please select input files for this execution or use external files."
+      flash[:error] = t(:error_select_input)
     elsif params[:execution][:input_parameters][:inputs][:language].empty?
-      flash[:error] = "Language of the documents have not been selected."
+      flash[:error] = t(:error_select_lang)
     else
       @execution = Execution.new(post_params)
       @execution.workflow = Workflow.last
