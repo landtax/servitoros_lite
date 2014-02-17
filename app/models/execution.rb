@@ -75,9 +75,8 @@ class Execution < ActiveRecord::Base
     status == :initialized
   end
 
-  def error=
+  def error?
     status == :error
-
   end
 
   private
