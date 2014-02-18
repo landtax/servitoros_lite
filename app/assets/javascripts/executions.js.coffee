@@ -14,18 +14,18 @@ update_executions = ->
 update_executions()
 
 
-
-#run_tutorial = ->
-  #$('link_step1').on 'click', (e) ->
-    #$('#link_step1').popover(html: $('#step1').text())
-
-
-
 $(document).ready ->
-  #run_tutorial()
+
+  $("#use_example_btn").on 'click', (e) ->
+    $('#execution_input_parameters_inputs_input_urls').val("http://gilmere.upf.edu/WS/upload/system/files/125/original/UTF-8.txt\nhttp://gilmere.upf.edu/WS/upload/system/files/115/original/large2.txt")
+    $('#execution_input_parameters_inputs_language').val('es')
+    return false
+
+
   $('#input_select_buttons button').on 'click', (e) ->
     type = $(e.target).attr("href").replace("#", "")
     $('#execution_type').val(type)
+
   $('#show_external_files').on 'click', (e) ->
     $('#basic_button').click()
 

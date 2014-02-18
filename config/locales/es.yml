@@ -21,7 +21,7 @@ es:
   download: "Descarga"
   input_urls: "URLs de entrada"
   paste_here: "Copia la dirección URL del fichero pdf o texto (.txt) y codificación UTF8."
-  paste_here_2: "Puedes copiar más de una dirección y ContaWords contará los diferentes ficheros como un texto único. <br /><br />Utiliza los ficheros que ya están en la caja como ejemplo para probar."
+  paste_here_2: "Puedes copiar más de una dirección y ContaWords contará los diferentes ficheros como un texto único. <br />Utiliza los ficheros de ejemplo para probar."
   empty_ws: "Tu espacio de trabajo está vacío"
   or: "o"
   file: "Archivo"
@@ -42,3 +42,4 @@ es:
   external_files: "Archivos externos"
   error_select_input: "Por favor selecciona el método de entrada. Archivos subidos o archivos externos"
   error_select_lang: "El idioma de los documentos de entrada no ha sido selecionado"
+  use_example: "Usar ejemplo"

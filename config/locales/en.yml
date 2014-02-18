@@ -21,7 +21,7 @@ en:
   download: "Download"
   input_urls: "Input URLs"
   paste_here: "Paste here URLs directing to documents in .pdf or .txt format. One URL per row."
-  paste_here_2: "You can copy more than one URL because ContaWords will count the different files as one single text. Use the files that are already uploaded as an example to try out."
+  paste_here_2: "You can copy more than one URL because ContaWords will count the different files as one single text. <br /><br />Use the example files to try out."
   empty_ws: "Your workspace is empty."
   or: "or"
   file: "File"
@@ -42,3 +42,4 @@ en:
   external_files: "External files"
   error_select_input: "Please select input files for this execution or use external files."
   error_select_lang: "Language of the documents have not been selected."
+  use_example: "Use example"
