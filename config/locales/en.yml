@@ -43,3 +43,5 @@ en:
   error_select_input: "Please select input files for this execution or use external files."
   error_select_lang: "Language of the documents have not been selected."
   use_example: "Use example"
+  ya_esta_contando: "Results"
+  running_info: "Now, you can collect the results by downloading the output Excel file once the work is completed. You will have 24 hours to do it; then the results Excel file will be deleted from our servers. "
