@@ -5,42 +5,48 @@
   </p>
   <p class="text-center">
   <%= link_to "<i class='icon-folder-open'> </i> #{t(:upload_local_files)} ".html_safe, "#myModal", :"data-toggle" => "modal", :role => "button", :id => "show_file_upload" %>
-  <span id="or">or</span>
+  <span id="or"><%= t(:or) %></span>
   <%= link_to "<i class='icon-globe'> </i> #{t(:use_inet_files)} ".html_safe, "#", :id => "show_external_files" %>
   </p>
 
 </div>
 <% else %>
   <hr />
-  <table class="table table-condensed">
-    <thead>
-      <tr>
-        <th><%= t(:selected) %></th>
-        <th><%= t(:file) %></th>
-        <th><%= t(:comments) %></th>
-      </tr>
-    </thead>
-    <tbody>
+  <div class="span8">
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th class="select-box"></th>
+              <th><%= t(:file) %></th>
+            </tr>
+          </thead>
+          <tbody>
 
-    <% @files.each do |file| %>
-      <tr>
-        <td> <%= check_box_tag "upload_files[]", file.id %>
-        &nbsp;
-        <%= file.name %>  </td>
-      <td> <%= file.file_file_name %> </td>
-      <td> <%= link_to "<i class='icon-edit'> </i>".html_safe, "#" %>
-    </td>
-      </tr>
-    <% end %>
+            <% @files.each do |file| %>
+              <tr>
+                <td> <%= check_box_tag "upload_files[]", file.id %>
+                &nbsp;
+                <%= file.name %>  </td>
+              <td> <%= file.file_file_name %> </td>
+            </td>
+          </tr>
+        <% end %>
 
-    </tbody>
-    <th>
-    </th>
-  </table>
+      </tbody>
+      <th>
+      </th>
+    </table>
+  </div>
+  <div class="span3 pull-right">
+    <br />
+    <br />
+    <p class="help-block text-center"><strong><%= t(:can_upload_more_than_one) %></strong> <br /> <br /><%= t(:will_count_as_one) %></p>
+    <br />
+    <p class="text-center"><%= link_to "<i class='icon-folder-open'> #{t(:upload_more_files)} </i>".html_safe, "#myModal", :"data-toggle" => "modal", :role => "button", :class => "btn btn-small" %></p>
+  </div>
 
-  <%= link_to "<i class='icon-folder-open'> #{t(:upload_more_files)} </i>".html_safe, "#myModal", :"data-toggle" => "modal", :role => "button", :class => "btn btn-small" %>
+
 <% end %>
 
 
-</p>
 
