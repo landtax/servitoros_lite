@@ -16,11 +16,13 @@ update_executions()
 
 $(document).ready ->
 
+  if ("#contando_modal").length > 0
+    $('#contando_modal').modal({})
+
   $("#use_example_btn").on 'click', (e) ->
     $('#execution_input_parameters_inputs_input_urls').val("http://gilmere.upf.edu/WS/upload/system/files/125/original/UTF-8.txt\nhttp://gilmere.upf.edu/WS/upload/system/files/115/original/large2.txt")
     $('#execution_input_parameters_inputs_language').val('es')
     return false
-
 
   $('#input_select_buttons button').on 'click', (e) ->
     type = $(e.target).attr("href").replace("#", "")

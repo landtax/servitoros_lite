@@ -18,6 +18,7 @@ class ExecutionsController < ApplicationController
   end
 
   def create
+    param = {}
     if upload_file_input? && params[:upload_files].nil?
       flash[:error] = t(:error_select_input)
     elsif params[:execution][:input_parameters][:inputs][:language].empty?
@@ -28,8 +29,9 @@ class ExecutionsController < ApplicationController
       if @execution.save
         @execution.run!
       end
+      param = {:running => true}
     end
-    redirect_to executions_path
+    redirect_to executions_path(param)
   end
 
   def notify
