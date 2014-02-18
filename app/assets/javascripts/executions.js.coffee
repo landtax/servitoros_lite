@@ -16,6 +16,10 @@ update_executions()
 
 $(document).ready ->
 
+  $('#language').on 'change', ->
+    lang = @options[@selectedIndex].value
+    location.href = "?locale=" + lang
+
   if ("#contando_modal").length > 0
     $('#contando_modal').modal({})
 
