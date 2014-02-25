@@ -67,5 +67,4 @@ Servitoros::Application.configure do
  
 end
 
-UPLOADED_FILES_BASE_URL = "ws02.iula.upf.edu"
-PREFIX_SUBDIR = "/servitoros_lite"
+UPLOADED_FILES_BASE_URL = "lod.iula.upf.edu"

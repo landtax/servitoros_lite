@@ -7,7 +7,7 @@
     <% if @file.new_record? %>
       <%= f.input :file, :as => :file %>
     <% else %>
-      <p>File: <%= link_to @file.file_file_name, prefix_subdir(@file.file.url) %></p>
+      <p>File: <%= link_to @file.file_file_name, @file.file.url %></p>
     <% end %>
 
     <%= f.button :submit %>
