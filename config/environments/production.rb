@@ -67,4 +67,4 @@ Servitoros::Application.configure do
  
 end
 
-UPLOADED_FILES_BASE_URL = "lod.iula.upf.edu"
+UPLOADED_FILES_BASE_URL = "contawords.iula.upf.edu"
