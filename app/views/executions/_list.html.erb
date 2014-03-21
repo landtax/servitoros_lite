@@ -30,7 +30,7 @@
             <ol>
           <% (execution.input_parameters['inputs']['input_urls'].split("\r\n")).each do |url|  %>
               <li>
-            <%= link_to url %>
+              <%= link_to url.split("/").last, url, :target => "_blank" %>
               </li>
           <% end %>
             </ol>
