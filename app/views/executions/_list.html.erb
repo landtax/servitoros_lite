@@ -11,6 +11,7 @@
         <th><%= t(:start_date) %></th>
         <th><%= t(:end_date) %></th>
         <th><%= t(:status) %></th>
+        <th><%= t(:inputs) %></th>
         <th><%= t(:results) %></th>
       </tr>
     </thead>
@@ -24,6 +25,15 @@
           <span class="label <%= execution_status_class(execution) %>">
           <%= execution_status_name(execution) %>
           </span>
+        </td>
+        <td>
+            <ol>
+          <% (execution.input_parameters['inputs']['input_urls'].split("\r\n")).each do |url|  %>
+              <li>
+            <%= link_to url %>
+              </li>
+          <% end %>
+            </ol>
         </td>
 
         <td>
