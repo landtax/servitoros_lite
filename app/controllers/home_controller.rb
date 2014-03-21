@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     render :layout => 'application'
   end
 
-  def faq 
+  def faq
     render :layout => 'application'
   end
 
