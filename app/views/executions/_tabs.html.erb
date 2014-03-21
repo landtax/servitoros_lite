@@ -32,8 +32,7 @@
     </script>
   </div>
   <div class="span5">
-    <% langs = [[t(:tell_document_lang), ""],["Spanish", "es"], ["English", "en"], ["Catalan", "ca"], ["Portuguese", "pt"], ["Italian", "it"]] %>
-    <%= select "execution[input_parameters][inputs]", "language", langs  %>
+    <%= select "execution[input_parameters][inputs]", "language", lang_options  %>
   </div>
   <div class="pull-right">
     <button type="submit" class="btn btn-warning" name="commit">

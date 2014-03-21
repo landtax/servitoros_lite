@@ -52,5 +52,19 @@ module ApplicationHelper
     " hidden " if condition
   end
 
+  def humanize_lang(lang)
+    case lang
+    when "es" then "Spanish"
+    when "en" then "English"
+    when "ca" then "Catalan"
+    when "pt" then "Portuguese"
+    when "it" then "Italian"
+    end
+  end
+
+  def lang_options
+    [[t(:tell_document_lang), ""]] +  %w{es en ca pt it}.map { |lang| [humanize_lang(lang), lang] } 
+  end
+
 
 end

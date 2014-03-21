@@ -27,12 +27,13 @@
           </span>
         </td>
         <td>
+          <%= t humanize_lang(execution.input_parameters['inputs']['language']) %>
             <ol>
-          <% (execution.input_parameters['inputs']['input_urls'].split("\r\n")).each do |url|  %>
-              <li>
-              <%= link_to url.split("/").last, url, :target => "_blank" %>
-              </li>
-          <% end %>
+              <% (execution.input_parameters['inputs']['input_urls'].split("\r\n")).each do |url|  %>
+                <li>
+                <%= link_to url.split("/").last, url, :target => "_blank" %>
+                </li>
+              <% end %>
             </ol>
         </td>
 
