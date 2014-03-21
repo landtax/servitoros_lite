@@ -10,8 +10,8 @@ module ExecutionsHelper
   end
 
   def execution_status_name(execution)
-    return execution.status.to_s.humanize unless execution.initialized?
-    "In progress"
+    return t(:finished) if execution.finished?
+    t(:counting)
   end
 
 end

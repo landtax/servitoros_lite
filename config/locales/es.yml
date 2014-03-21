@@ -45,3 +45,5 @@ es:
   use_example: "Usar ejemplo"
   ya_esta_contando: "¡Ya está contando!"
   running_info: "Puedes recoger los resultados, descargándote el fichero que aparecerá una vez el trabajo esté terminado. Tienes 24 horas para hacerlo, después puede desaparecer."
+  counting: "Contando..."
+  finished: "Finalizado"
