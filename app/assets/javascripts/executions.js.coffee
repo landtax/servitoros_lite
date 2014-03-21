@@ -16,6 +16,9 @@ update_executions()
 
 $(document).ready ->
 
+  $('#select_all').on 'change', (e) ->
+    $('#upload_files tbody input[type="checkbox"]').prop("checked", $(@).prop("checked"))
+
   $('#language').on 'change', ->
     lang = @options[@selectedIndex].value
     location.href = "?locale=" + lang
@@ -36,6 +39,7 @@ $(document).ready ->
     $('#basic_button').click()
 
   $($.cookie('tab')).click()
+
 
 
 
