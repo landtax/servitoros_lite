@@ -48,3 +48,8 @@ en:
   running_info: "Now, you can collect the results by downloading the output Excel file once the work is completed. You will have 24 hours to do it; then the results Excel file will be deleted from our servers. "
   counting: "Counting..."
   finished: "Done"
+  spanish: "Spanish"
+  english: "English"
+  catalan: "Catalan"
+  portuguese: "Portuguese"
+  italian: "Italian"

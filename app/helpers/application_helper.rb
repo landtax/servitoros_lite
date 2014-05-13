@@ -54,11 +54,11 @@ module ApplicationHelper
 
   def humanize_lang(lang)
     case lang
-    when "es" then "Spanish"
-    when "en" then "English"
-    when "ca" then "Catalan"
-    when "pt" then "Portuguese"
-    when "it" then "Italian"
+    when "es" then t(:spanish)
+    when "en" then t(:english)
+    when "ca" then t(:catalan)
+    when "pt" then t(:portuguese)
+    when "it" then t(:italian)
     end
   end
 
