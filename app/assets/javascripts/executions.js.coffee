@@ -27,8 +27,9 @@ $(document).ready ->
     $('#contando_modal').modal({})
 
   $("#use_example_btn").on 'click', (e) ->
-    $('#execution_input_parameters_inputs_input_urls').val("http://gilmere.upf.edu/WS/upload/system/files/125/original/UTF-8.txt\nhttp://gilmere.upf.edu/WS/upload/system/files/115/original/large2.txt")
-    $('#execution_input_parameters_inputs_language').val('es')
+    lang = $('#execution_input_parameters_inputs_input_urls').data('lang')
+    $('#execution_input_parameters_inputs_input_urls').val("http://contawords.iula.upf.edu/docs/" + lang + "/doc1.txt\nhttp://contawords.iula.upf.edu/docs/" + lang + "/doc2.txt")
+    $('#execution_input_parameters_inputs_language').val(lang)
     return false
 
   $('#input_select_buttons button').on 'click', (e) ->

@@ -23,7 +23,7 @@
                   <% port = @input_ports[0] %>
                   <%= input_params.fields_for :inputs do |inputs| %>
                     <% value = @execution.input_parameters[:inputs][port] if @execution.input_parameters %>
-                    <%= inputs.input port, as: :text, input_html: {value: "", rows: 10, class: 'span7'}, :label => t(:input_urls)  %>
+                    <%= inputs.input port, as: :text, input_html: {value: "", rows: 10, class: 'span7', :'data-lang' => I18n.locale}, :label => t(:input_urls)  %>
                   <% end %>
 
               <% end %>
