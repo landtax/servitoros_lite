@@ -21,6 +21,7 @@ gem "paperclip", "~> 3.0"
 gem 'activeadmin'
 gem 'sass-rails'
 gem "meta_search",    '>= 1.1.0.pre'
+gem 'shareable'
 
 # Gems used only for assets and not required
 # in production environments by default.
