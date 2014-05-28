@@ -2,11 +2,7 @@
   <div class="span6">
     <p class="lead">ContaWords compta les paraules dels textos que vulguis així com...</p>
   </div>
-  <div class="span6">
-    <div class="share-buttons pull-right">
-    <%= render_shareable :buttons=> ['twitter',  'linkedin', 'google_plus', 'facebook'] %>
-    </div>
-  </div>
+  <%= render :partial => 'share_buttons' %>
 </div>
 
 <div class="row row-marketing row-headlines">
